@@ -209,7 +209,7 @@ export default function DashboardQAPage() {
                   </button>
                   <button
                     onClick={() => setShowShareModal(createdSession)}
-                    className="px-3 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-xl text-sm transition flex items-center gap-1"
+                    className="px-3 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl text-sm transition flex items-center gap-1 font-semibold shadow-md shadow-blue-500/20"
                   >
                     <Share2 size={16} /> Share
                   </button>
@@ -221,12 +221,12 @@ export default function DashboardQAPage() {
 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className={`text-3xl font-bold ${themeClasses.text}`}>My Q&A Sessions</h1>
+            <h1 className={`text-3xl font-extrabold tracking-tight ${themeClasses.text}`}>My Q&A Sessions</h1>
             <p className={themeClasses.textSecondary}>Host live Q&A and get anonymous questions</p>
           </div>
           <button
             onClick={() => setShowCreateModal(true)}
-            className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-xl font-medium transition flex items-center gap-2 shadow-lg shadow-blue-500/25"
+            className="px-4 py-2.5 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl font-semibold transition flex items-center gap-2 shadow-lg shadow-blue-500/25 active:scale-95 text-sm"
           >
             <Plus size={18} />
             Host Session
@@ -238,12 +238,12 @@ export default function DashboardQAPage() {
             <button
               key={f}
               onClick={() => setFilter(f as any)}
-              className={`px-4 py-2 rounded-xl text-sm font-medium transition ${
+              className={`px-4 py-2 rounded-xl text-sm font-semibold transition ${
                 filter === f
-                  ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg shadow-blue-500/25'
+                  ? 'bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 text-white shadow-lg shadow-blue-500/25'
                   : darkMode
-                  ? 'bg-white/5 text-gray-400 hover:bg-white/10'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  ? 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white'
+                  : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
               }`}
             >
               {f.charAt(0).toUpperCase() + f.slice(1)}
@@ -257,12 +257,12 @@ export default function DashboardQAPage() {
           </div>
         ) : sessionsList.length === 0 ? (
           <div className={`text-center py-16 ${themeClasses.card} rounded-2xl border`}>
-            <MessageSquare size={48} className="mx-auto mb-4 text-gray-500" />
-            <h3 className={`text-lg font-medium ${themeClasses.text} mb-2`}>No Q&A sessions yet</h3>
+            <MessageSquare size={48} className="mx-auto mb-4 text-blue-500/60" />
+            <h3 className={`text-lg font-bold ${themeClasses.text} mb-2`}>No Q&A sessions yet</h3>
             <p className={themeClasses.textSecondary}>Host your first Q&A session to get started!</p>
             <button
               onClick={() => setShowCreateModal(true)}
-              className="mt-4 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-medium transition shadow-lg shadow-blue-500/25"
+              className="mt-4 px-5 py-2.5 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl font-semibold transition shadow-lg shadow-blue-500/25 active:scale-95 text-sm"
             >
               Host a Session
             </button>
@@ -580,7 +580,7 @@ export default function DashboardQAPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting || !formData.title || !formData.starts_at}
-                  className="flex-1 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-xl font-medium transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-500/25"
+                  className="flex-1 px-4 py-2.5 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-500/25 active:scale-95 text-sm"
                 >
                   {isSubmitting ? 'Creating...' : 'Create Session'}
                 </button>

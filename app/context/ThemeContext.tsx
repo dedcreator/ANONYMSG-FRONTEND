@@ -17,13 +17,13 @@ interface ThemeContextType {
 export const THEMES = {
   dark: {
     name: 'Dark',
-    bg: '#000000',
-    text: '#ffffff',
-    textSecondary: '#9ca3af',
-    card: 'rgba(255,255,255,0.05)',
-    border: 'rgba(255,255,255,0.08)',
+    bg: '#0B0F19',
+    text: '#f8fafc',
+    textSecondary: '#94a3b8',
+    card: 'rgba(15, 23, 42, 0.75)',
+    border: 'rgba(255, 255, 255, 0.08)',
     accent: '#3b82f6',
-    shadow: 'rgba(0,0,0,0.5)',
+    shadow: 'rgba(0, 0, 0, 0.5)',
   },
   light: {
     name: 'Light',
@@ -31,9 +31,9 @@ export const THEMES = {
     text: '#0f172a',
     textSecondary: '#64748b',
     card: '#ffffff',
-    border: 'rgba(0,0,0,0.06)',
+    border: 'rgba(0, 0, 0, 0.06)',
     accent: '#3b82f6',
-    shadow: 'rgba(0,0,0,0.08)',
+    shadow: 'rgba(0, 0, 0, 0.08)',
   },
   neon: {
     name: 'Neon',
@@ -75,10 +75,35 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [customFont, setCustomFont] = useState('inter')
   const [customCSS, setCustomCSS] = useState('')
 
+  // Sync dark class on <html> document element
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const root = document.documentElement
+      if (darkMode) {
+        root.classList.add('dark')
+        root.classList.remove('light')
+      } else {
+        root.classList.remove('dark')
+        root.classList.add('light')
+      }
+    }
+  }, [darkMode])
+
   useEffect(() => {
     const saved = localStorage.getItem('darkMode')
     if (saved !== null) {
-      setDarkMode(saved === 'true')
+      const isDark = saved === 'true'
+      setDarkMode(isDark)
+      if (typeof window !== 'undefined') {
+        const root = document.documentElement
+        if (isDark) {
+          root.classList.add('dark')
+          root.classList.remove('light')
+        } else {
+          root.classList.remove('dark')
+          root.classList.add('light')
+        }
+      }
     }
     const savedTheme = localStorage.getItem('profileTheme')
     if (savedTheme) {

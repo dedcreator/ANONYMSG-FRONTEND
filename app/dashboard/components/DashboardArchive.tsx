@@ -61,12 +61,12 @@ export function DashboardArchive({
     }
   }
 
-  const themeClasses = {
-    text: darkMode ? 'text-white' : 'text-gray-900',
-    textSecondary: darkMode ? 'text-gray-400' : 'text-gray-500',
-    card: darkMode ? 'bg-gray-900/40 border border-gray-800/50 backdrop-blur-sm' : 'bg-white border border-gray-200/60 shadow-sm',
-    hover: darkMode ? 'hover:bg-gray-800/60' : 'hover:bg-gray-50/80',
-    input: darkMode ? 'bg-gray-800/60 border-gray-700/50 text-white placeholder:text-gray-500' : 'bg-white border-gray-200 text-gray-900 placeholder:text-gray-400',
+    const themeClasses = {
+    text: darkMode ? 'text-white' : 'text-slate-900',
+    textSecondary: darkMode ? 'text-slate-400' : 'text-slate-500',
+    card: darkMode ? 'bg-slate-900/60 border border-slate-800 backdrop-blur-xl hover:border-blue-500/30' : 'bg-white border border-slate-200 shadow-sm hover:border-blue-500/30',
+    hover: darkMode ? 'hover:bg-slate-800/60' : 'hover:bg-slate-50/80',
+    input: darkMode ? 'bg-slate-900 border-slate-800 text-white placeholder:text-slate-500 focus:border-blue-500 focus:ring-blue-500/20' : 'bg-white border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:ring-blue-500/20',
   }
 
   return (
@@ -74,35 +74,37 @@ export function DashboardArchive({
       {/* Header Stats */}
       <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
         <div>
-          <h2 className={`text-xl font-semibold ${themeClasses.text}`}>Archive</h2>
-          <p className={`text-sm ${themeClasses.textSecondary}`}>
-            {archivedMessages.length} archived messages
+          <h2 className={`text-2xl font-extrabold tracking-tight ${themeClasses.text}`}>Archive</h2>
+          <p className={`text-xs sm:text-sm mt-0.5 ${themeClasses.textSecondary}`}>
+            {archivedMessages.length} preserved anonymous messages
           </p>
         </div>
         <div className="flex gap-2">
           <button
             onClick={() => setSelectMode(!selectMode)}
-            className={`px-4 py-2 rounded-xl transition-all text-sm font-medium flex items-center gap-2 ${
-              darkMode 
-                ? 'bg-gray-800/60 text-gray-300 border border-gray-700/50 hover:bg-gray-700/60' 
-                : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
+            className={`px-4 py-2.5 rounded-xl transition-all text-xs sm:text-sm font-semibold flex items-center gap-2 border ${
+              selectMode
+                ? 'bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-500/25'
+                : darkMode 
+                ? 'bg-slate-900 text-slate-300 border-slate-800 hover:text-white hover:bg-slate-800' 
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50 shadow-sm'
             }`}
           >
             <Archive size={16} />
-            {selectMode ? 'Cancel' : 'Bulk Actions'}
+            <span>{selectMode ? 'Cancel Selection' : 'Bulk Select'}</span>
           </button>
         </div>
       </div>
 
       {/* Search */}
       <div className="relative">
-        <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+        <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
         <input
           type="text"
           placeholder="Search archived messages..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className={`w-full ${themeClasses.input} rounded-2xl pl-10 pr-4 py-3 text-sm border focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all`}
+          className={`w-full ${themeClasses.input} rounded-2xl pl-10 pr-4 py-3 text-sm border focus:outline-none focus:ring-2 transition-all`}
         />
       </div>
 

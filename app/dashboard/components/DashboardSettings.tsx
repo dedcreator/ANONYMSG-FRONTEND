@@ -347,7 +347,7 @@ export function DashboardSettings({
       <div className={`${themeClasses.card} rounded-xl p-5`}>
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <Code size="18" className="text-purple-500" />
+            <Code size="18" className="text-blue-500" />
             <h3 className={`text-base font-medium ${themeClasses.text}`}>Embed Widget</h3>
           </div>
           <button
@@ -380,9 +380,9 @@ export function DashboardSettings({
 
         {/* Quick preview if not expanded */}
         {!showEmbedGenerator && (
-          <div className={`p-4 rounded-xl ${darkMode ? 'bg-gray-800/50' : 'bg-gray-50'} border border-gray-200 dark:border-gray-700`}>
+          <div className={`p-4 rounded-xl ${darkMode ? 'bg-slate-900/60' : 'bg-slate-50'} border border-slate-200 dark:border-slate-800`}>
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center shadow-md shadow-blue-500/25">
                 <MessageSquare size={16} className="text-white" />
               </div>
               <div>
@@ -391,7 +391,7 @@ export function DashboardSettings({
               </div>
               <button
                 onClick={() => setShowEmbedGenerator(true)}
-                className={`ml-auto px-3 py-1.5 rounded-lg text-xs transition ${themeClasses.buttonSecondary}`}
+                className={`ml-auto px-3 py-1.5 rounded-lg text-xs font-semibold transition ${themeClasses.buttonSecondary}`}
               >
                 Configure
               </button>
@@ -403,13 +403,13 @@ export function DashboardSettings({
       {/* Live Preview */}
       <div className={`${themeClasses.card} rounded-xl p-5`}>
         <h3 className={`text-base font-medium ${themeClasses.text} mb-4 flex items-center gap-2`}>
-          <Eye size="18" className="text-gray-500" />
+          <Eye size="18" className="text-blue-500" />
           Live Preview
         </h3>
         <p className={`text-sm ${themeClasses.textSecondary} mb-4`}>See how your page looks to visitors</p>
         <div className="flex flex-col sm:flex-row gap-3">
           <NextLink href={`/${settingsForm.username || 'user'}`} target="_blank" className="flex-1">
-            <button className={`w-full flex items-center justify-center gap-2 px-4 py-2.5 ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-gray-100 hover:bg-gray-200'} rounded-xl transition text-sm ${themeClasses.text}`}>
+            <button className={`w-full flex items-center justify-center gap-2 px-4 py-2.5 ${darkMode ? 'bg-slate-800 hover:bg-slate-700' : 'bg-slate-100 hover:bg-slate-200'} rounded-xl transition text-sm font-medium ${themeClasses.text}`}>
               View Your Public Page <ExternalLink size={14} />
             </button>
           </NextLink>
@@ -418,7 +418,7 @@ export function DashboardSettings({
               const url = `${window.location.origin}/${settingsForm.username || 'user'}`
               navigator.clipboard.writeText(url)
             }}
-            className={`flex items-center justify-center gap-2 px-4 py-2.5 ${themeClasses.buttonSecondary} rounded-xl transition text-sm`}
+            className={`flex items-center justify-center gap-2 px-4 py-2.5 ${themeClasses.buttonSecondary} rounded-xl transition text-sm font-medium`}
           >
             <Copy size={14} /> Copy Link
           </button>
@@ -426,13 +426,13 @@ export function DashboardSettings({
       </div>
 
       {/* Danger Zone */}
-      <div className={`${darkMode ? 'bg-red-900/10 border-red-800' : 'bg-red-50 border-red-200'} rounded-xl p-5 border`}>
-        <h3 className="text-base font-medium text-red-600 dark:text-red-400 mb-2 flex items-center gap-2">
+      <div className={`${darkMode ? 'bg-rose-950/20 border-rose-850' : 'bg-rose-50 border-rose-200'} rounded-xl p-5 border`}>
+        <h3 className="text-base font-semibold text-rose-600 dark:text-rose-400 mb-2 flex items-center gap-2">
           <AlertCircle size="18" />
           Danger Zone
         </h3>
-        <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-3`}>Delete your account and all data. This cannot be undone.</p>
-        <button className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm transition">Delete Account</button>
+        <p className={`text-sm ${darkMode ? 'text-slate-400' : 'text-slate-600'} mb-3`}>Delete your account and all data. This cannot be undone.</p>
+        <button className="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-sm font-semibold transition">Delete Account</button>
       </div>
 
       {/* Save Button */}
@@ -440,7 +440,7 @@ export function DashboardSettings({
         <button
           onClick={onSave}
           disabled={isSaving}
-          className={`px-6 py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-xl transition flex items-center gap-2 text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-500/25`}
+          className="px-6 py-3 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl transition-all flex items-center gap-2 text-sm font-bold disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-500/25 active:scale-95"
         >
           {isSaving ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
           {isSaving ? 'Saving...' : 'Save All Changes'}

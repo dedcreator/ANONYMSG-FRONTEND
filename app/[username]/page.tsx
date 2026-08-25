@@ -15,7 +15,7 @@ import {
   Globe, Link as LinkIcon, MapPin, Mail, Sparkles, AlertTriangle,
   X, Menu, ArrowLeft, Home, LogOut, Settings, Bell, Inbox, Share2, Zap, Clock,
   Mic, Image as ImageIcon, Smile, Paperclip, Loader2, Trash2,
-  Play, Pause, Volume2, VolumeX
+  Play, Pause, Volume2, VolumeX, Gift
 } from 'lucide-react'
 
 // React Icons for Social Media
@@ -27,18 +27,20 @@ import { FiLink } from 'react-icons/fi'
 // Components
 import { VoiceRecorder } from '@/app/components/VoiceRecorder'
 import { GIFPicker } from '@/app/components/GIFPicker'
+import { GiftModal } from '@/app/components/GiftModal'
+import { LeaderboardWidget } from '@/app/components/LeaderboardWidget'
 
 // Button Component with theme support
 const Button = ({ children, variant = 'primary', size = 'md', className = '', onClick, fullWidth, disabled, loading, type = 'button', darkMode = false }: any) => {
   const baseStyles = "font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2 rounded-xl"
   
   const variants: any = {
-    primary: "bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-lg shadow-blue-500/25",
+    primary: "bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg shadow-blue-500/25",
     secondary: darkMode
-      ? "bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm"
-      : "bg-gray-100 hover:bg-gray-200 text-gray-900 border border-gray-200",
+      ? "bg-slate-900 hover:bg-slate-800 text-white border border-slate-800 backdrop-blur-sm"
+      : "bg-slate-100 hover:bg-slate-200 text-slate-900 border border-slate-200",
     outline: "border-2 border-blue-500 text-blue-500 hover:bg-blue-500/10",
-    danger: "bg-red-500 hover:bg-red-600 text-white shadow-lg shadow-red-500/25",
+    danger: "bg-rose-500 hover:bg-rose-600 text-white shadow-lg shadow-rose-500/25",
   }
   
   const sizes: any = {
@@ -104,6 +106,10 @@ interface PublicProfile {
   discord: string | null
   message_count: number
   join_date: string
+  allow_gifting?: boolean
+  minimum_gift_amount?: number
+  currency?: string
+  public_wall?: boolean
 }
 
 export default function PublicProfilePage() {
@@ -121,6 +127,7 @@ export default function PublicProfilePage() {
   const [characterCount, setCharacterCount] = useState(0)
   const [loading, setLoading] = useState(true)
   const [copied, setCopied] = useState(false)
+  const [showGiftModal, setShowGiftModal] = useState(false)
   
   // Media states
   const [showVoiceRecorder, setShowVoiceRecorder] = useState(false)
@@ -317,14 +324,14 @@ export default function PublicProfilePage() {
   const isOwnProfile = currentUser === username
 
   const themeClasses = {
-    bg: darkMode ? 'bg-black' : 'bg-gray-50',
-    text: darkMode ? 'text-white' : 'text-gray-900',
-    textSecondary: darkMode ? 'text-gray-400' : 'text-gray-500',
-    textMuted: darkMode ? 'text-gray-600' : 'text-gray-400',
-    card: darkMode ? 'bg-white/5 border border-white/10 backdrop-blur-sm' : 'bg-white border border-gray-200/60 shadow-sm',
-    cardHover: darkMode ? 'hover:border-blue-500/30' : 'hover:border-blue-500/50',
-    input: darkMode ? 'bg-white/5 border-white/10 text-white placeholder:text-gray-500' : 'bg-white border-gray-200 text-gray-900 placeholder:text-gray-400',
-    buttonSecondary: darkMode ? 'bg-white/10 hover:bg-white/20 text-gray-300' : 'bg-gray-100 hover:bg-gray-200 text-gray-700',
+    bg: darkMode ? 'bg-[#0B0F19]' : 'bg-slate-50',
+    text: darkMode ? 'text-white' : 'text-slate-900',
+    textSecondary: darkMode ? 'text-slate-400' : 'text-slate-500',
+    textMuted: darkMode ? 'text-slate-500' : 'text-slate-400',
+    card: darkMode ? 'bg-slate-900/60 border border-slate-800/80 backdrop-blur-xl' : 'bg-white border border-slate-200/80 shadow-sm',
+    cardHover: darkMode ? 'hover:border-blue-500/40' : 'hover:border-blue-500/40',
+    input: darkMode ? 'bg-slate-950 border-slate-800 text-white placeholder:text-slate-500 focus:border-blue-500 focus:ring-blue-500/20' : 'bg-white border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:ring-blue-500/20',
+    buttonSecondary: darkMode ? 'bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200/60',
   }
 
   if (loading) {
@@ -440,6 +447,16 @@ export default function PublicProfilePage() {
                     <Copy size={16} className={themeClasses.textSecondary} />
                   )}
                 </button>
+                {!isOwnProfile && profile.allow_gifting !== false && (
+                  <button
+                    type="button"
+                    onClick={() => setShowGiftModal(true)}
+                    className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-xs shadow-md shadow-blue-500/25 transition-all flex items-center gap-1.5 active:scale-95"
+                  >
+                    <Gift size={14} />
+                    <span>Send Tip</span>
+                  </button>
+                )}
               </div>
               
               <div className="flex flex-wrap gap-6">
@@ -451,8 +468,8 @@ export default function PublicProfilePage() {
                   <span className={`text-xs ${themeClasses.textSecondary}`}>messages</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="p-1.5 rounded-lg bg-purple-500/10">
-                    <Calendar size={14} className="text-purple-500" />
+                  <div className="p-1.5 rounded-lg bg-indigo-500/10">
+                    <Calendar size={14} className="text-indigo-400" />
                   </div>
                   <span className={`text-xs ${themeClasses.textSecondary}`}>
                     Joined {profile.join_date ? new Date(profile.join_date).getFullYear() : 'recently'}
@@ -657,8 +674,8 @@ export default function PublicProfilePage() {
                   <Lock size={12} className="text-blue-500" />
                   <span>End-to-end encrypted</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs text-gray-500">
-                  <Eye size={12} className="text-purple-500" />
+                <div className="flex items-center gap-2 text-xs text-slate-400">
+                  <Eye size={12} className="text-cyan-400" />
                   <span>No tracking</span>
                 </div>
               </div>
@@ -756,6 +773,31 @@ export default function PublicProfilePage() {
             </button>
           </motion.div>
         )}
+
+        {/* Top Supporters Leaderboard */}
+        {profile.allow_gifting !== false && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25 }}
+            className="mt-8"
+          >
+            <LeaderboardWidget 
+              username={username}
+              onOpenGiftModal={() => setShowGiftModal(true)}
+              darkMode={darkMode}
+            />
+          </motion.div>
+        )}
+
+        {/* Gift Modal */}
+        <GiftModal
+          isOpen={showGiftModal}
+          onClose={() => setShowGiftModal(false)}
+          creatorUsername={username}
+          creatorAvatar={profile.profile_picture}
+          darkMode={darkMode}
+        />
 
         {/* Footer */}
         <motion.div 

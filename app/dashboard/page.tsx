@@ -8,15 +8,17 @@ import Link from 'next/link'
 import { 
   Menu, X, AlertCircle, Loader2, Check,
   MessageSquare, Plus, Share2, Trash2, BarChart3, Archive, Settings, LogOut, Sun, Moon,
-  Copy  
+  Copy, Wallet, Sparkles
 } from 'lucide-react'
 
 // Import components
 import { DashboardSidebar } from './components/DashboardSidebar'
+import { DashboardBottomNav } from './components/DashboardBottomNav'
 import { DashboardInbox } from './components/DashboardInbox'
 import { DashboardAnalytics } from './components/DashboardAnalytics'
 import { DashboardArchive } from './components/DashboardArchive'
 import { DashboardSettings } from './components/DashboardSettings'
+import { DashboardWallet } from './components/DashboardWallet'
 import DashboardQAPage from './qa/page'
 
 // Import API client
@@ -37,8 +39,7 @@ export default function DashboardPage() {
   const [uploading, setUploading] = useState<'profile' | 'banner' | null>(null)
   const [showSavedAlert, setShowSavedAlert] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [activeTab, setActiveTab] = useState<'inbox' | 'analytics' | 'settings' | 'archive' | 'qa'>('inbox')
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [activeTab, setActiveTab] = useState<'inbox' | 'analytics' | 'settings' | 'archive' | 'qa' | 'wallet'>('inbox')
   const [messages, setMessages] = useState<Message[]>([])
   const [archivedMessages, setArchivedMessages] = useState<Message[]>([])
   const [settings, setSettings] = useState<SettingsForm>({
@@ -448,6 +449,8 @@ export default function DashboardPage() {
         )
       case 'qa':
         return <DashboardQAPage />
+      case 'wallet':
+        return <DashboardWallet darkMode={darkMode} />
       case 'analytics':
         return <DashboardAnalytics stats={stats} darkMode={darkMode} messages={messages} />
       case 'settings':
@@ -486,6 +489,7 @@ export default function DashboardPage() {
       case 'inbox': return 'Messages'
       case 'archive': return 'Archive'
       case 'qa': return 'Q&A'
+      case 'wallet': return 'Wallet & Earnings'
       case 'analytics': return 'Analytics'
       case 'settings': return 'Settings'
       default: return ''
@@ -497,6 +501,7 @@ export default function DashboardPage() {
       case 'inbox': return `${stats.unread} unread messages`
       case 'archive': return `${archivedMessages.length} archived messages`
       case 'qa': return 'Host and manage your Q&A sessions'
+      case 'wallet': return 'Manage payouts, view tips, gifts, and revenue'
       case 'analytics': return 'Message insights and statistics'
       default: return ''
     }
@@ -526,117 +531,52 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className={`min-h-screen ${themeClasses.bg}`}>
+    <div className={`min-h-screen ${themeClasses.bg} relative overflow-x-hidden transition-colors duration-300 selection:bg-blue-500 selection:text-white`}>
+      {/* Ambient Blue Background Glow */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 dark:bg-blue-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-indigo-600/5 dark:bg-indigo-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
+
+      {/* Saved Toast Notification */}
       {showSavedAlert && (
-        <div className="fixed top-20 right-4 z-50 bg-green-500 text-white px-4 py-2 rounded-xl shadow-lg flex items-center gap-2 animate-in">
-          <Check size={16} /> Settings saved!
+        <div className="fixed top-6 right-6 z-50 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-5 py-3 rounded-2xl shadow-xl shadow-blue-500/30 flex items-center gap-2.5 animate-in fade-in slide-in-from-top-4 duration-300 border border-blue-400/30">
+          <Check size={18} className="text-white" />
+          <span className="font-semibold text-sm">Settings saved successfully!</span>
         </div>
       )}
 
+      {/* PWA Install Banner */}
       {showInstallPrompt && !isPWA && (
-        <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg">
-          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="fixed top-0 left-0 right-0 z-50 p-3 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white shadow-xl">
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 px-4">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                <span className="text-2xl">📱</span>
+              <div className="w-9 h-9 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                <span className="text-lg">📱</span>
               </div>
               <div>
-                <h3 className="text-white font-semibold">Install AnonQ App</h3>
-                <p className="text-white/70 text-sm">Get the full app experience</p>
+                <h3 className="text-white font-bold text-sm">Install AnonQ App</h3>
+                <p className="text-blue-100 text-xs">Faster access & real-time push notifications</p>
               </div>
             </div>
-            <div className="flex gap-2 w-full sm:w-auto">
+            <div className="flex items-center gap-2">
               <button
                 onClick={dismissPrompt}
-                className="px-4 py-2 text-white hover:bg-white/10 rounded-xl transition flex-1 sm:flex-none"
+                className="px-3 py-1.5 text-xs text-white/80 hover:text-white rounded-lg transition"
               >
                 Later
               </button>
               <button
                 onClick={installApp}
                 disabled={isInstalling}
-                className="px-6 py-2 bg-white text-blue-600 hover:bg-gray-100 rounded-xl font-medium transition flex-1 sm:flex-none disabled:opacity-50"
+                className="px-4 py-1.5 bg-white text-blue-600 hover:bg-blue-50 rounded-xl text-xs font-bold transition shadow-md disabled:opacity-50"
               >
-                {isInstalling ? 'Installing...' : 'Install App'}
+                {isInstalling ? 'Installing...' : 'Install'}
               </button>
             </div>
           </div>
         </div>
       )}
 
-      <button
-        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        className="lg:hidden fixed top-20 left-4 z-50 p-2 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg"
-      >
-        {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-      </button>
-
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 bg-black/50 z-40 lg:hidden" onClick={() => setMobileMenuOpen(false)} />
-      )}
-      <div className={`
-        fixed top-0 left-0 bottom-0 w-64 z-50 transform transition-transform duration-300 lg:hidden
-        ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
-        ${darkMode ? 'bg-black border-white/10' : 'bg-white border-gray-200/50'} border-r backdrop-blur-md
-      `}>
-        <div className="p-6">
-          <div className="flex items-center gap-3 mb-8 pb-8 border-b border-gray-200/50 dark:border-white/10">
-            {settings.profilePicture ? (
-              <img 
-                src={settings.profilePicture} 
-                alt={settings.username}
-                className="w-10 h-10 rounded-xl object-cover border-2 border-blue-500/20"
-              />
-            ) : (
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
-                <span className="text-white font-bold text-sm">
-                  {settings.username ? settings.username.charAt(0).toUpperCase() : '?'}
-                </span>
-              </div>
-            )}
-            <div>
-              <p className={`font-medium ${themeClasses.text}`}>@{settings.username}</p>
-              <p className="text-xs text-gray-500">Member</p>
-            </div>
-          </div>
-          <nav className="space-y-1">
-            {[
-              { icon: MessageSquare, label: 'Inbox', tab: 'inbox', badge: stats.unread },
-              { icon: Archive, label: 'Archive', tab: 'archive', badge: archivedMessages.length },
-              { icon: Plus, label: 'Q&A', tab: 'qa', badge: 0 },
-              { icon: BarChart3, label: 'Analytics', tab: 'analytics', badge: 0 },
-              { icon: Settings, label: 'Settings', tab: 'settings', badge: 0 },
-            ].map((item) => (
-              <button
-                key={item.label}
-                onClick={() => { setActiveTab(item.tab as any); setMobileMenuOpen(false) }}
-                className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm transition ${
-                  activeTab === item.tab
-                    ? darkMode ? 'bg-white/10 text-white' : 'bg-gray-100 text-gray-900'
-                    : darkMode ? 'text-gray-400 hover:text-white hover:bg-white/10' : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'
-                }`}
-              >
-                <item.icon size={18} />
-                <span className="flex-1 text-left">{item.label}</span>
-                {item.badge > 0 && (
-                  <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-blue-500 text-white">
-                    {item.badge}
-                  </span>
-                )}
-              </button>
-            ))}
-          </nav>
-          <div className="absolute bottom-6 left-6 right-6 pt-6 border-t border-gray-200/50 dark:border-white/10 space-y-2">
-            <button onClick={toggleTheme} className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm transition ${darkMode ? 'text-gray-400 hover:text-white hover:bg-white/10' : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'}`}>
-              {darkMode ? <Sun size={18} /> : <Moon size={18} />} {darkMode ? 'Light Mode' : 'Dark Mode'}
-            </button>
-            <button onClick={handleLogout} className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm text-red-500 hover:bg-red-500/10 transition">
-              <LogOut size={18} /> Logout
-            </button>
-          </div>
-        </div>
-      </div>
-
+      {/* Desktop Sidebar (lg screens) */}
       <DashboardSidebar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -646,45 +586,103 @@ export default function DashboardPage() {
         profilePicture={settings.profilePicture}
       />
 
-      <main className="lg:ml-64 pt-20">
-        <div className={`border-b ${themeClasses.border} px-6 py-4`}>
-          <div className="flex justify-between items-center flex-wrap gap-3">
+      {/* Mobile Bottom Navigation Bar (< lg screens) */}
+      <DashboardBottomNav
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        unreadCount={stats.unread}
+        darkMode={darkMode}
+      />
+
+      {/* Main Dashboard Workspace */}
+      <main className="lg:ml-64 min-h-screen pb-28 lg:pb-12 transition-all duration-300">
+        {/* Modern In-Page Header */}
+        <header className={`px-5 sm:px-8 py-6 border-b ${themeClasses.border} backdrop-blur-sm`}>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            {/* Title & Mobile Quick Brand Bar */}
             <div>
-              <h1 className={`text-2xl font-bold ${themeClasses.text}`}>
-                {getTabTitle()}
-              </h1>
-              <p className={`text-sm ${themeClasses.textSec}`}>
+              {/* Mobile brand header snippet */}
+              <div className="flex lg:hidden items-center justify-between mb-3 pb-2 border-b border-slate-200/50 dark:border-slate-800/50">
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/25">
+                    <Sparkles size={14} />
+                  </div>
+                  <span className="font-extrabold text-base tracking-tight">
+                    Anon<span className="text-blue-500">Q</span>
+                  </span>
+                </div>
+                
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={toggleTheme}
+                    className={`p-2 rounded-xl transition ${
+                      darkMode ? 'bg-slate-900 text-amber-400 border border-slate-800' : 'bg-slate-100 text-blue-600 border border-slate-200'
+                    }`}
+                    title="Toggle Theme"
+                  >
+                    {darkMode ? <Sun size={15} /> : <Moon size={15} />}
+                  </button>
+                  <Link
+                    href={`/${settings.username}`}
+                    target="_blank"
+                    className="px-2.5 py-1.5 rounded-xl bg-blue-500/10 text-blue-500 border border-blue-500/20 text-xs font-semibold flex items-center gap-1"
+                  >
+                    <span>@{settings.username}</span>
+                  </Link>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-sm shadow-blue-500/50 animate-pulse" />
+                <h1 className={`text-2xl sm:text-3xl font-extrabold tracking-tight ${themeClasses.text}`}>
+                  {getTabTitle()}
+                </h1>
+              </div>
+              <p className={`text-xs sm:text-sm mt-1 font-medium ${themeClasses.textSec}`}>
                 {getTabSubtitle()}
               </p>
             </div>
-            {activeTab === 'inbox' && (
-              <button onClick={shareLink} className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl text-sm font-medium transition flex items-center gap-2 shadow-lg shadow-blue-500/25">
-                <Share2 size={14} /> Share Profile
-              </button>
-            )}
-            {activeTab === 'qa' && (
-              <Link href="/dashboard/qa">
-                <button className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl text-sm font-medium transition flex items-center gap-2 shadow-lg shadow-blue-500/25">
-                  <Plus size={14} /> New Session
-                </button>
-              </Link>
-            )}
-            {activeTab === 'archive' && archivedMessages.length > 0 && (
-              <button 
-                onClick={() => {
-                  if (confirm('Empty archive? This will permanently delete all archived messages.')) {
-                    archivedMessages.forEach(m => permanentDeleteMessage(m.id))
-                  }
-                }}
-                className="px-4 py-2 bg-red-500 text-white rounded-xl text-sm font-medium transition flex items-center gap-2"
-              >
-                <Trash2 size={14} /> Empty Archive
-              </button>
-            )}
-          </div>
-        </div>
 
-        <div className="p-6">
+            {/* Header Actions */}
+            <div className="flex items-center gap-2.5 flex-wrap">
+              {activeTab === 'inbox' && (
+                <button 
+                  onClick={shareLink} 
+                  className="px-4 py-2.5 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-2 shadow-lg shadow-blue-500/25 active:scale-95"
+                >
+                  <Share2 size={15} />
+                  <span>Share Profile Link</span>
+                </button>
+              )}
+
+              {activeTab === 'qa' && (
+                <Link href="/dashboard/qa">
+                  <button className="px-4 py-2.5 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-2 shadow-lg shadow-blue-500/25 active:scale-95">
+                    <Plus size={15} />
+                    <span>New Q&A Session</span>
+                  </button>
+                </Link>
+              )}
+
+              {activeTab === 'archive' && archivedMessages.length > 0 && (
+                <button 
+                  onClick={() => {
+                    if (confirm('Empty archive? This will permanently delete all archived messages.')) {
+                      archivedMessages.forEach(m => permanentDeleteMessage(m.id))
+                    }
+                  }}
+                  className="px-4 py-2.5 bg-rose-500/10 hover:bg-rose-500 text-rose-500 hover:text-white border border-rose-500/20 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-2 active:scale-95"
+                >
+                  <Trash2 size={15} />
+                  <span>Empty Archive</span>
+                </button>
+              )}
+            </div>
+          </div>
+        </header>
+
+        {/* Tab View Container */}
+        <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">
           {renderTabContent()}
         </div>
       </main>

@@ -13,40 +13,58 @@
 
 /* Light and Dark Mode Variables */
 :root {
-  /* Dark mode (default) */
-  --bg-primary: #000000;
-  --bg-secondary: rgba(255, 255, 255, 0.05);
-  --bg-tertiary: rgba(255, 255, 255, 0.02);
-  --text-primary: #ffffff;
-  --text-secondary: #9ca3af;
-  --text-muted: #6b7280;
+  /* Dark mode (default rich obsidian slate) */
+  --bg-primary: #0B0F19;
+  --bg-secondary: #111827;
+  --bg-tertiary: #1E293B;
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
   --border-color: rgba(255, 255, 255, 0.08);
-  --card-bg: rgba(255, 255, 255, 0.04);
+  --card-bg: rgba(15, 23, 42, 0.75);
   --card-border: rgba(255, 255, 255, 0.08);
-  --input-bg: rgba(255, 255, 255, 0.05);
-  --input-border: rgba(255, 255, 255, 0.1);
-  --hover-bg: rgba(255, 255, 255, 0.08);
+  --input-bg: #070A11;
+  --input-border: #1E293B;
+  --hover-bg: rgba(255, 255, 255, 0.06);
   --shadow-color: rgba(0, 0, 0, 0.5);
-  --gradient-start: #3b82f6;
-  --gradient-end: #8b5cf6;
+  --gradient-start: #2563EB;
+  --gradient-end: #4F46E5;
+}
+
+.dark {
+  --bg-primary: #0B0F19;
+  --bg-secondary: #111827;
+  --bg-tertiary: #1E293B;
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --card-bg: rgba(15, 23, 42, 0.75);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --input-bg: #070A11;
+  --input-border: #1E293B;
+  --hover-bg: rgba(255, 255, 255, 0.06);
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --gradient-start: #2563EB;
+  --gradient-end: #4F46E5;
 }
 
 .light {
   --bg-primary: #f8fafc;
   --bg-secondary: #f1f5f9;
-  --bg-tertiary: #f8fafc;
+  --bg-tertiary: #ffffff;
   --text-primary: #0f172a;
   --text-secondary: #64748b;
   --text-muted: #94a3b8;
-  --border-color: rgba(0, 0, 0, 0.06);
+  --border-color: rgba(0, 0, 0, 0.08);
   --card-bg: #ffffff;
-  --card-border: rgba(0, 0, 0, 0.06);
+  --card-border: rgba(0, 0, 0, 0.08);
   --input-bg: #ffffff;
-  --input-border: #e2e8f0;
+  --input-border: #cbd5e1;
   --hover-bg: #f1f5f9;
-  --shadow-color: rgba(0, 0, 0, 0.08);
-  --gradient-start: #2563eb;
-  --gradient-end: #7c3aed;
+  --shadow-color: rgba(0, 0, 0, 0.06);
+  --gradient-start: #2563EB;
+  --gradient-end: #4F46E5;
 }
 
 @layer base {

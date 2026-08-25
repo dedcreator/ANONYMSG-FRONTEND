@@ -95,36 +95,38 @@ export function DashboardAnalytics({ stats, darkMode, messages }: DashboardAnaly
 
   const getStatColor = (color: string) => {
     const colors: Record<string, string> = {
-      blue: 'bg-blue-500/10 text-blue-500',
-      purple: 'bg-purple-500/10 text-purple-500',
-      green: 'bg-green-500/10 text-green-500',
-      orange: 'bg-orange-500/10 text-orange-500',
-      pink: 'bg-pink-500/10 text-pink-500',
+      blue: 'bg-blue-500/10 text-blue-400 border border-blue-500/20',
+      purple: 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20',
+      green: 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20',
+      orange: 'bg-amber-500/10 text-amber-400 border border-amber-500/20',
+      pink: 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20',
     }
-    return colors[color] || 'bg-gray-500/10 text-gray-500'
+    return colors[color] || 'bg-blue-500/10 text-blue-400'
   }
 
   const themeClasses = {
-    text: darkMode ? 'text-white' : 'text-gray-900',
-    textSecondary: darkMode ? 'text-gray-400' : 'text-gray-500',
-    card: darkMode ? 'bg-gray-900/40 border border-gray-800/50 backdrop-blur-sm' : 'bg-white border border-gray-200/60 shadow-sm',
+    text: darkMode ? 'text-white' : 'text-slate-900',
+    textSecondary: darkMode ? 'text-slate-400' : 'text-slate-500',
+    card: darkMode ? 'bg-slate-900/60 border border-slate-800 backdrop-blur-xl' : 'bg-white border border-slate-200 shadow-sm',
   }
 
   return (
     <div className="space-y-6">
       {/* Welcome Section */}
-      <div className={`p-6 rounded-2xl ${darkMode ? 'bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20' : 'bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200/50'}`}>
+      <div className={`p-6 rounded-3xl ${darkMode ? 'bg-gradient-to-r from-blue-600/15 via-indigo-600/10 to-transparent border border-blue-500/25' : 'bg-gradient-to-r from-blue-50 via-indigo-50/50 to-white border border-blue-200/80 shadow-sm'}`}>
         <div className="flex items-center gap-3">
-          <Sparkles size={24} className="text-blue-500" />
+          <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/25">
+            <Sparkles size={20} />
+          </div>
           <div>
-            <h2 className={`text-lg font-semibold ${themeClasses.text}`}>Analytics Overview</h2>
-            <p className={`text-sm ${themeClasses.textSecondary}`}>
-              Here's how your messages are performing
+            <h2 className={`text-lg font-bold ${themeClasses.text}`}>Analytics Overview</h2>
+            <p className={`text-xs sm:text-sm ${themeClasses.textSecondary}`}>
+              Real-time insights and growth performance
             </p>
           </div>
-          <div className="ml-auto flex items-center gap-2 text-sm text-green-500">
-            <Activity size={16} />
-            <span>Live</span>
+          <div className="ml-auto flex items-center gap-2 text-xs font-bold text-emerald-500 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+            <Activity size={14} className="animate-pulse" />
+            <span>Live Data</span>
           </div>
         </div>
       </div>

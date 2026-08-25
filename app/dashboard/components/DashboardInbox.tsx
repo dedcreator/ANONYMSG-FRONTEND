@@ -479,50 +479,50 @@ export function DashboardInbox({
   }
 
   const themeClasses = {
-    text: darkMode ? 'text-white' : 'text-gray-900',
-    textSecondary: darkMode ? 'text-gray-400' : 'text-gray-500',
-    card: darkMode ? 'bg-gray-900/40 border border-gray-800/50 backdrop-blur-sm' : 'bg-white border border-gray-200/60 shadow-sm',
-    hover: darkMode ? 'hover:bg-gray-800/60' : 'hover:bg-gray-50/80',
-    button: darkMode ? 'bg-gray-800/60 hover:bg-gray-700/60 text-gray-300 border border-gray-700/50' : 'bg-white border border-gray-200 hover:bg-gray-50 text-gray-600',
-    input: darkMode ? 'bg-gray-800/60 border-gray-700/50 text-white placeholder:text-gray-500' : 'bg-white border-gray-200 text-gray-900 placeholder:text-gray-400',
+    text: darkMode ? 'text-white' : 'text-slate-900',
+    textSecondary: darkMode ? 'text-slate-400' : 'text-slate-500',
+    card: darkMode ? 'bg-slate-900/60 border border-slate-800/80 backdrop-blur-xl' : 'bg-white border border-slate-200/80 shadow-sm',
+    hover: darkMode ? 'hover:bg-slate-800/60' : 'hover:bg-slate-50/80',
+    button: darkMode ? 'bg-slate-900/80 hover:bg-slate-800 text-slate-200 border border-slate-800' : 'bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 shadow-sm',
+    input: darkMode ? 'bg-slate-900/80 border-slate-800 text-white placeholder:text-slate-500 focus:border-blue-500 focus:ring-blue-500/20' : 'bg-white border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:ring-blue-500/20',
   }
 
   const statCards = [
     { icon: Inbox, value: stats.total, label: 'Total Messages', color: 'blue' },
-    { icon: Eye, value: stats.unread, label: 'Unread', color: 'purple' },
-    { icon: Calendar, value: stats.thisWeek, label: 'This Week', color: 'green' },
-    { icon: Award, value: `${stats.streak} days`, label: 'Streak', color: 'orange' },
-    { icon: MessageSquare, value: stats.responseRate || 0, label: 'Engagement', color: 'pink' },
+    { icon: Eye, value: stats.unread, label: 'Unread', color: 'cyan' },
+    { icon: Calendar, value: stats.thisWeek, label: 'This Week', color: 'emerald' },
+    { icon: Award, value: `${stats.streak} days`, label: 'Streak', color: 'amber' },
+    { icon: MessageSquare, value: stats.responseRate || 0, label: 'Engagement', color: 'indigo' },
   ]
 
   const getStatColor = (color: string) => {
     const colors: Record<string, string> = {
-      blue: 'bg-blue-500/10 text-blue-500',
-      purple: 'bg-purple-500/10 text-purple-500',
-      green: 'bg-green-500/10 text-green-500',
-      orange: 'bg-orange-500/10 text-orange-500',
-      pink: 'bg-pink-500/10 text-pink-500',
+      blue: 'bg-blue-500/10 text-blue-400 border border-blue-500/20',
+      cyan: 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20',
+      emerald: 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20',
+      amber: 'bg-amber-500/10 text-amber-400 border border-amber-500/20',
+      indigo: 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20',
     }
-    return colors[color] || 'bg-gray-500/10 text-gray-500'
+    return colors[color] || 'bg-blue-500/10 text-blue-400'
   }
 
   return (
     <div className="space-y-6">
       {/* Stats Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-4">
         {statCards.map((stat, index) => (
           <motion.div 
             key={stat.label} 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.05 }}
-            className={`${themeClasses.card} rounded-2xl p-4 transition-all duration-200 hover:scale-[1.02]`}
+            className={`${themeClasses.card} rounded-2xl p-4 transition-all duration-200 hover:border-blue-500/40 hover:-translate-y-0.5`}
           >
-            <div className={`inline-flex p-2 rounded-xl ${getStatColor(stat.color)} mb-2`}>
+            <div className={`inline-flex p-2.5 rounded-xl ${getStatColor(stat.color)} mb-2.5`}>
               <stat.icon size={16} />
             </div>
-            <div className={`text-2xl font-bold ${themeClasses.text}`}>{stat.value}</div>
-            <div className="text-xs text-gray-500">{stat.label}</div>
+            <div className={`text-2xl font-extrabold tracking-tight ${themeClasses.text}`}>{stat.value}</div>
+            <div className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-0.5">{stat.label}</div>
           </motion.div>
         ))}
       </div>
@@ -534,12 +534,12 @@ export function DashboardInbox({
             <button
               key={f}
               onClick={() => setFilter(f as any)}
-              className={`px-4 py-2 rounded-xl transition-all text-sm font-medium ${
+              className={`px-4 py-2.5 rounded-xl transition-all text-sm font-semibold ${
                 filter === f 
-                  ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg shadow-blue-500/25'
+                  ? 'bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 text-white shadow-lg shadow-blue-500/25'
                   : darkMode 
-                    ? 'bg-gray-800/60 text-gray-400 hover:bg-gray-700/60 border border-gray-700/50'
-                    : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
+                    ? 'bg-slate-900/80 text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800' 
+                    : 'bg-white text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-slate-200 shadow-sm'
               }`}
             >
               {f.charAt(0).toUpperCase() + f.slice(1)}
@@ -649,7 +649,7 @@ export function DashboardInbox({
             <button
               onClick={handleSendMessage}
               disabled={!messageInput.trim()}
-              className="px-4 py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-500/25"
+              className="px-4 py-2.5 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-500/25 active:scale-95"
             >
               <Send size={18} />
             </button>
@@ -726,10 +726,10 @@ export function DashboardInbox({
               </button>
             </div>
             <div className="flex gap-2">
-              <button onClick={archiveSelected} className="px-4 py-2 rounded-xl text-sm flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:scale-[1.02] transition shadow-lg shadow-blue-500/25">
+              <button onClick={archiveSelected} className="px-4 py-2 rounded-xl text-sm flex items-center gap-2 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white transition shadow-lg shadow-blue-500/25 font-semibold">
                 <Archive size={14} /> Archive ({selectedMessages.length})
               </button>
-              <button onClick={() => { setSelectMode(false); setSelectedMessages([]) }} className={`px-4 py-2 rounded-xl text-sm ${darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'} transition`}>
+              <button onClick={() => { setSelectMode(false); setSelectedMessages([]) }} className={`px-4 py-2 rounded-xl text-sm ${darkMode ? 'bg-slate-800 hover:bg-slate-700 text-slate-300' : 'bg-slate-200 hover:bg-slate-300 text-slate-700'} transition font-medium`}>
                 Cancel
               </button>
             </div>
@@ -743,17 +743,17 @@ export function DashboardInbox({
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className={`${darkMode ? 'bg-gray-900/30 border-gray-800/50' : 'bg-gray-50/50 border-gray-200/60'} rounded-2xl p-16 text-center border-2 border-dashed`}
+            className={`${darkMode ? 'bg-slate-900/30 border-slate-800/80' : 'bg-slate-50/50 border-slate-200'} rounded-2xl p-16 text-center border-2 border-dashed`}
           >
-            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 flex items-center justify-center">
-              <Inbox className="w-8 h-8 text-gray-400" />
+            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-r from-blue-500/10 to-indigo-500/10 flex items-center justify-center">
+              <Inbox className="w-8 h-8 text-blue-500/80" />
             </div>
-            <h3 className={`text-lg font-medium ${themeClasses.text} mb-2`}>Empty inbox</h3>
-            <p className="text-gray-500 text-sm">
+            <h3 className={`text-lg font-bold ${themeClasses.text} mb-2`}>Empty inbox</h3>
+            <p className="text-slate-500 dark:text-slate-400 text-sm">
               {searchQuery ? 'Try a different search term' : 'Share your link to receive anonymous messages'}
             </p>
             {!searchQuery && (
-              <button onClick={onShareLink} className="mt-4 px-6 py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl text-sm font-medium transition hover:scale-[1.02] shadow-lg shadow-blue-500/25">
+              <button onClick={onShareLink} className="mt-4 px-6 py-2.5 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl text-sm font-semibold transition-all duration-200 shadow-lg shadow-blue-500/25 active:scale-95">
                 <Share2 size={14} className="inline mr-2" /> Share Your Link
               </button>
             )}
@@ -1088,7 +1088,7 @@ export function DashboardInbox({
               <div className="space-y-2">
                 <button 
                   onClick={downloadImage} 
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 rounded-xl text-white text-sm font-medium transition shadow-lg shadow-blue-500/25"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 rounded-xl text-white text-sm font-semibold transition shadow-lg shadow-blue-500/25 active:scale-95"
                 >
                   <Download size={16} /> Download Image
                 </button>
