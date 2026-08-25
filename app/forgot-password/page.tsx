@@ -22,7 +22,7 @@ export default function ForgotPasswordPage() {
       const response = await fetch(`${API_BASE_URL}/auth/forgot-password/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
+        body: JSON.stringify({ email: email.trim().toLowerCase() })
       })
 
       const data = await response.json()

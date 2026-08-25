@@ -63,8 +63,8 @@ export default function ResetPasswordClient() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          token,
-          email,
+          token: token.trim(),
+          email: email.trim().toLowerCase(),
           new_password: newPassword,
           confirm_password: confirmPassword
         })
