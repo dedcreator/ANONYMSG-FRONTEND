@@ -14,7 +14,7 @@ import {
   TrendingUp, Smile, Award, Clock, Mic, Image,
   Palette, BarChart3, Send, Share2, Crown,
   Rocket, Gem, Infinity, Target, Coffee, Play,
-  ChevronRight, Quote, MoveRight
+  ChevronRight, Quote, MoveRight, Flame, Gift
 } from 'lucide-react'
 
 // Button Component with theme support
@@ -307,8 +307,8 @@ export default function HomePage() {
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="font-extrabold text-base tracking-tight text-slate-900 dark:text-white">@alex_creator</span>
-                    <span className="px-2 py-0.5 rounded-full text-[11px] font-bold bg-blue-500/10 text-blue-500 border border-blue-500/20">
-                      ✓ Verified
+                    <span className="px-2 py-0.5 rounded-full text-[11px] font-bold bg-blue-500/10 text-blue-500 border border-blue-500/20 inline-flex items-center gap-1">
+                      <Check size={11} className="stroke-[3]" /> Verified
                     </span>
                   </div>
                   <p className="text-xs text-slate-400">anonq.me/alex_creator • 42.8k secret questions answered</p>
@@ -318,21 +318,22 @@ export default function HomePage() {
               {/* Mode Selector Tabs */}
               <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs font-semibold">
                 {[
-                  { id: 'messages', label: '💬 Text Message' },
-                  { id: 'voice', label: '🎙️ Voice Note' },
-                  { id: 'qa', label: '🎯 Live Q&A' },
-                  { id: 'tips', label: '🎁 Send Tip' },
+                  { id: 'messages', label: 'Text Message', icon: MessageSquare },
+                  { id: 'voice', label: 'Voice Note', icon: Mic },
+                  { id: 'qa', label: 'Live Q&A', icon: Target },
+                  { id: 'tips', label: 'Send Tip', icon: Gift },
                 ].map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id as any)}
-                    className={`px-3 py-1.5 rounded-xl transition ${
+                    className={`px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 ${
                       activeTab === tab.id
                         ? 'bg-blue-600 text-white shadow-md shadow-blue-500/25'
                         : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                     }`}
                   >
-                    {tab.label}
+                    <tab.icon size={13} className={activeTab === tab.id ? 'text-white' : 'text-slate-400'} />
+                    <span>{tab.label}</span>
                   </button>
                 ))}
               </div>
@@ -424,7 +425,10 @@ export default function HomePage() {
                         "What is your biggest fear as a startup founder in 2026?"
                       </p>
                       <div className="flex items-center justify-between mt-3 text-xs text-slate-400">
-                        <span>🔥 342 upvotes</span>
+                        <span className="flex items-center gap-1 text-amber-500 font-medium">
+                          <Flame size={13} className="fill-amber-500 text-amber-500" />
+                          342 upvotes
+                        </span>
                         <span className="text-blue-500 font-semibold">Answered 2m ago</span>
                       </div>
                     </div>
@@ -471,7 +475,10 @@ export default function HomePage() {
                     "Your latest tech review made me switch careers to UI/UX design. Thank you!"
                   </p>
                   <div className="flex items-center justify-between mt-4 pt-3 border-t border-white/15 text-xs text-blue-100">
-                    <span>❤️ 1,280 reactions</span>
+                    <span className="flex items-center gap-1 text-rose-200 font-medium">
+                      <Heart size={13} className="fill-rose-400 text-rose-400" />
+                      1,280 reactions
+                    </span>
                     <span className="font-semibold">Shared to Story</span>
                   </div>
                 </div>
