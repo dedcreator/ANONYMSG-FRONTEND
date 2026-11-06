@@ -126,9 +126,6 @@ export function GiftModal({
           {/* Mobile Drag Indicator */}
           <div className="w-12 h-1.5 rounded-full bg-slate-300 dark:bg-slate-700 mx-auto mb-4 sm:hidden" />
 
-          {/* Ambient Glow */}
-          <div className="absolute top-0 right-0 -mr-24 -mt-24 w-72 h-72 bg-gradient-to-br from-blue-600/20 via-indigo-600/15 to-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
-
           {/* Close button */}
           <button
             onClick={onClose}
@@ -146,14 +143,14 @@ export function GiftModal({
                 <img
                   src={creatorAvatar}
                   alt={creatorUsername}
-                  className="w-14 h-14 rounded-2xl object-cover ring-2 ring-blue-500/30 shadow-md"
+                  className="w-14 h-14 rounded-2xl object-cover ring-2 ring-blue-500/30 shadow-sm"
                 />
               ) : (
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-blue-500/25">
+                <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center text-white font-extrabold text-xl shadow-sm">
                   {creatorUsername.charAt(0).toUpperCase()}
                 </div>
               )}
-              <div className="absolute -bottom-1 -right-1 bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-1 rounded-lg text-xs shadow-md">
+              <div className="absolute -bottom-1 -right-1 bg-blue-600 text-white p-1 rounded-lg text-xs shadow-sm">
                 <Gift size={12} />
               </div>
             </div>
@@ -188,7 +185,7 @@ export function GiftModal({
                     }}
                     className={`p-2.5 sm:p-3 rounded-2xl text-center font-extrabold text-sm transition-all duration-200 border relative ${
                       isSelected
-                        ? 'bg-gradient-to-tr from-blue-600 to-indigo-600 text-white border-blue-400 shadow-lg shadow-blue-500/30 scale-[1.03]'
+                        ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
                         : darkMode
                         ? 'bg-slate-950/60 border-slate-800 hover:bg-slate-800 text-slate-200'
                         : 'bg-slate-50 border-slate-200 hover:bg-slate-100 text-slate-800'
@@ -329,7 +326,7 @@ export function GiftModal({
             type="button"
             onClick={handlePay}
             disabled={isLoading || effectiveAmount < 100}
-            className="w-full py-3.5 px-6 rounded-2xl font-extrabold text-white bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-xl shadow-blue-500/25 active:scale-95 transition-all flex items-center justify-center gap-2.5 disabled:opacity-50"
+            className="w-full py-3.5 px-6 rounded-2xl font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2.5 disabled:opacity-50"
           >
             {isLoading ? (
               <>

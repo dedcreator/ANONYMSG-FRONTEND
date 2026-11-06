@@ -20,12 +20,12 @@ export function Button({
   fullWidth = false,
 }: ButtonProps) {
   const baseStyles =
-    'px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed'
+    'px-5 py-2.5 rounded-xl font-medium transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2'
 
   const variants = {
-    primary: 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-500/25',
+    primary: 'bg-blue-600 hover:bg-blue-700 text-white shadow-sm',
     secondary:
-      'bg-white/10 hover:bg-white/20 text-white border border-white/20',
+      'bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700',
   }
 
   return (

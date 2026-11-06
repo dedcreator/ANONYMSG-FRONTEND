@@ -257,14 +257,12 @@ export function DashboardWallet({ darkMode = true }: DashboardWalletProps) {
       {/* Primary Balance Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {/* Available Balance Card */}
-        <div className="relative overflow-hidden rounded-3xl p-6 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-900 text-white shadow-xl shadow-blue-500/20 border border-blue-400/30">
-          <div className="absolute top-0 right-0 -mr-10 -mt-10 w-40 h-40 bg-cyan-400/20 rounded-full blur-2xl pointer-events-none" />
-          
+        <div className="relative overflow-hidden rounded-2xl p-6 bg-blue-600 text-white shadow-sm border border-blue-500">
           <div className="flex items-center justify-between mb-4">
             <span className="text-xs font-bold uppercase tracking-wider text-blue-100">
               Available for Payout
             </span>
-            <div className="p-2.5 rounded-xl bg-white/15 backdrop-blur-md border border-white/20">
+            <div className="p-2 rounded-xl bg-white/15">
               <WalletIcon size={18} className="text-white" />
             </div>
           </div>
@@ -453,7 +451,7 @@ export function DashboardWallet({ darkMode = true }: DashboardWalletProps) {
                 type="button"
                 onClick={handleSavePayoutSettings}
                 disabled={savingSettings || !accountName}
-                className="w-full py-3 px-5 rounded-2xl font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 shadow-lg shadow-blue-500/20 transition disabled:opacity-50 flex items-center justify-center gap-2"
+                className="w-full py-3 px-5 rounded-xl font-semibold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 shadow-sm transition disabled:opacity-50 flex items-center justify-center gap-2"
               >
                 {savingSettings ? <Loader2 size={16} className="animate-spin" /> : null}
                 <span>Save Bank Account</span>
@@ -657,7 +655,7 @@ export function DashboardWallet({ darkMode = true }: DashboardWalletProps) {
                 type="button"
                 onClick={handleRequestWithdrawal}
                 disabled={withdrawing}
-                className="flex-1 py-3 rounded-2xl font-bold text-xs bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg shadow-blue-500/25 flex items-center justify-center gap-1.5 transition active:scale-95 disabled:opacity-50"
+                className="flex-1 py-3 rounded-xl font-semibold text-xs bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white shadow-sm flex items-center justify-center gap-1.5 transition disabled:opacity-50"
               >
                 {withdrawing ? <Loader2 size={14} className="animate-spin" /> : null}
                 <span>Confirm Payout</span>

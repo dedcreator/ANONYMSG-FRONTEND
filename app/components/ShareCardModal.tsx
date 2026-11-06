@@ -170,7 +170,7 @@ export function ShareCardModal({
                       className="w-10 h-10 rounded-full object-cover ring-2 ring-white/20"
                     />
                   ) : (
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-sm shadow">
+                    <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm shadow">
                       {username.charAt(0).toUpperCase()}
                     </div>
                   )}
@@ -214,7 +214,7 @@ export function ShareCardModal({
 
               {/* Creator Reply Bubble (If present) */}
               {creatorReply && (
-                <div className="bg-gradient-to-r from-blue-600/30 to-purple-600/30 backdrop-blur-xl border border-blue-400/30 rounded-2xl p-4 text-white shadow-xl">
+                <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-700/60 rounded-2xl p-4 text-white shadow-xl">
                   <div className="flex items-center gap-1.5 text-blue-300 text-[11px] font-semibold mb-1">
                     <Heart size={12} className="text-pink-400 fill-pink-400" />
                     <span>@{username} replied:</span>
@@ -239,7 +239,7 @@ export function ShareCardModal({
               type="button"
               onClick={handleDownload}
               disabled={isExporting}
-              className="py-3 px-5 rounded-2xl font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 shadow-lg shadow-blue-500/25 active:scale-95 transition-all flex items-center justify-center gap-2"
+              className="py-3 px-5 rounded-2xl font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2"
             >
               <Download size={18} />
               <span>{isExporting ? 'Generating PNG...' : 'Download Story Image'}</span>

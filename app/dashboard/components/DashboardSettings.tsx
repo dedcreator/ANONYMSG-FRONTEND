@@ -382,7 +382,7 @@ export function DashboardSettings({
         {!showEmbedGenerator && (
           <div className={`p-4 rounded-xl ${darkMode ? 'bg-slate-900/60' : 'bg-slate-50'} border border-slate-200 dark:border-slate-800`}>
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center shadow-md shadow-blue-500/25">
+              <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-sm">
                 <MessageSquare size={16} className="text-white" />
               </div>
               <div>
@@ -440,7 +440,7 @@ export function DashboardSettings({
         <button
           onClick={onSave}
           disabled={isSaving}
-          className="px-6 py-3 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl transition-all flex items-center gap-2 text-sm font-bold disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-500/25 active:scale-95"
+          className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-xl transition flex items-center gap-2 text-sm font-semibold disabled:opacity-50 shadow-sm"
         >
           {isSaving ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
           {isSaving ? 'Saving...' : 'Save All Changes'}

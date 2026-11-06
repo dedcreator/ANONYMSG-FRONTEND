@@ -16,9 +16,9 @@ const Button = ({ children, variant = 'primary', size = 'md', className = '', on
   const baseStyles = "font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95 inline-flex items-center justify-center gap-2 rounded-xl"
   
   const variants: any = {
-    primary: "bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-lg shadow-blue-500/25",
+    primary: "bg-blue-600 hover:bg-blue-700 text-white shadow-sm",
     secondary: darkMode 
-      ? "bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm"
+      ? "bg-slate-800 hover:bg-slate-700 text-white border border-slate-700"
       : "bg-gray-100 hover:bg-gray-200 text-gray-900 border border-gray-200",
   }
   
@@ -47,11 +47,11 @@ const Footer = ({ darkMode }: { darkMode: boolean }) => (
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
         <div className="col-span-2 md:col-span-1">
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center shadow-lg shadow-blue-500/25">
+            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center shadow-sm">
               <Sparkles size={18} className="text-white" />
             </div>
             <span className={`font-bold text-xl ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-              Anon<span className="text-blue-500">Q</span>
+              Anon<span className="text-blue-600">Q</span>
             </span>
           </div>
           <p className={`text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>
@@ -123,16 +123,15 @@ export default function AboutPage() {
 
       {/* Hero */}
       <section className="pt-32 pb-20 px-4 relative overflow-hidden">
-        <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full blur-3xl ${darkMode ? 'bg-blue-600/20' : 'bg-blue-400/10'}`} />
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 ${darkMode ? 'bg-white/5 border border-white/10' : 'bg-blue-50 border border-blue-100'}`}>
-              <Sparkles size={16} className="text-blue-500" />
+              <Sparkles size={16} className="text-blue-600" />
               <span className={`text-sm ${themeClasses.textSec}`}>About Us</span>
             </div>
             <h1 className={`text-5xl md:text-6xl font-bold mb-6 ${themeClasses.text}`}>
               We Believe in{' '}
-              <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Honest Conversations</span>
+              <span className="text-blue-600">Honest Conversations</span>
             </h1>
             <p className={`text-xl ${themeClasses.textSec} max-w-2xl mx-auto leading-relaxed`}>
               AnonQ was built on the belief that everyone deserves to express themselves freely and receive honest feedback without fear.
@@ -146,9 +145,9 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}>
-              <span className={`text-sm font-medium text-blue-500 uppercase tracking-wider`}>Our Mission</span>
+              <span className={`text-sm font-medium text-blue-600 uppercase tracking-wider`}>Our Mission</span>
               <h2 className={`text-3xl md:text-4xl font-bold ${themeClasses.text} mt-2 mb-4`}>
-                Empowering <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Authentic Connections</span>
+                Empowering <span className="text-blue-600">Authentic Connections</span>
               </h2>
               <p className={`${themeClasses.textSec} leading-relaxed mb-4`}>
                 We believe that the best conversations happen when people feel safe to speak their truth. AnonQ provides the platform for honest, anonymous communication.
@@ -186,7 +185,7 @@ export default function AboutPage() {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-12">
             <span className={`text-sm font-medium text-purple-500 uppercase tracking-wider`}>Values</span>
             <h2 className={`text-3xl md:text-4xl font-bold ${themeClasses.text} mb-4 mt-2`}>
-              What We <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Stand For</span>
+              What We <span className="text-blue-600">Stand For</span>
             </h2>
           </motion.div>
           <div className="grid md:grid-cols-4 gap-6">
@@ -217,7 +216,7 @@ export default function AboutPage() {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-12">
             <span className={`text-sm font-medium text-green-500 uppercase tracking-wider`}>Team</span>
             <h2 className={`text-3xl md:text-4xl font-bold ${themeClasses.text} mb-4 mt-2`}>
-              Meet the <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">People</span> Behind AnonQ
+              Meet the <span className="text-blue-600">People</span> Behind AnonQ
             </h2>
           </motion.div>
           <div className="grid md:grid-cols-4 gap-6">
@@ -250,7 +249,7 @@ export default function AboutPage() {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-12">
             <span className={`text-sm font-medium text-orange-500 uppercase tracking-wider`}>Journey</span>
             <h2 className={`text-3xl md:text-4xl font-bold ${themeClasses.text} mb-4 mt-2`}>
-              Our <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Milestones</span>
+              Our <span className="text-blue-600">Milestones</span>
             </h2>
           </motion.div>
           <div className="grid md:grid-cols-4 gap-6">
@@ -276,10 +275,9 @@ export default function AboutPage() {
       {/* CTA */}
       <section className="py-20 px-4">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} className="max-w-4xl mx-auto text-center">
-          <div className={`rounded-3xl p-12 relative overflow-hidden ${darkMode ? 'bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-white/10' : 'bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-100/50'}`}>
-            <div className={`absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl ${darkMode ? 'bg-blue-500/10' : 'bg-blue-400/10'}`} />
+          <div className={`rounded-3xl p-12 relative overflow-hidden ${darkMode ? 'bg-slate-900/90 border border-slate-800' : 'bg-slate-50 border border-slate-200 shadow-sm'}`}>
             <div className="relative z-10">
-              <Rocket className="w-12 h-12 text-blue-500 mx-auto mb-4" />
+              <Rocket className="w-12 h-12 text-blue-600 mx-auto mb-4" />
               <h2 className={`text-3xl md:text-4xl font-bold ${themeClasses.text} mb-4`}>Join Our Community</h2>
               <p className={`${themeClasses.textSec} mb-8 max-w-2xl mx-auto`}>
                 Be part of something bigger. Join thousands of users who are already using AnonQ.

@@ -209,7 +209,7 @@ export default function DashboardQAPage() {
                   </button>
                   <button
                     onClick={() => setShowShareModal(createdSession)}
-                    className="px-3 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl text-sm transition flex items-center gap-1 font-semibold shadow-md shadow-blue-500/20"
+                    className="px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm transition flex items-center gap-1 font-semibold shadow-sm"
                   >
                     <Share2 size={16} /> Share
                   </button>
@@ -226,7 +226,7 @@ export default function DashboardQAPage() {
           </div>
           <button
             onClick={() => setShowCreateModal(true)}
-            className="px-4 py-2.5 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl font-semibold transition flex items-center gap-2 shadow-lg shadow-blue-500/25 active:scale-95 text-sm"
+            className="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-xl font-semibold transition flex items-center gap-2 shadow-sm text-sm"
           >
             <Plus size={18} />
             Host Session
@@ -240,7 +240,7 @@ export default function DashboardQAPage() {
               onClick={() => setFilter(f as any)}
               className={`px-4 py-2 rounded-xl text-sm font-semibold transition ${
                 filter === f
-                  ? 'bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 text-white shadow-lg shadow-blue-500/25'
+                  ? 'bg-blue-600 text-white shadow-sm'
                   : darkMode
                   ? 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white'
                   : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
@@ -262,7 +262,7 @@ export default function DashboardQAPage() {
             <p className={themeClasses.textSecondary}>Host your first Q&A session to get started!</p>
             <button
               onClick={() => setShowCreateModal(true)}
-              className="mt-4 px-5 py-2.5 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl font-semibold transition shadow-lg shadow-blue-500/25 active:scale-95 text-sm"
+              className="mt-4 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-xl font-semibold transition shadow-sm text-sm"
             >
               Host a Session
             </button>
@@ -580,7 +580,7 @@ export default function DashboardQAPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting || !formData.title || !formData.starts_at}
-                  className="flex-1 px-4 py-2.5 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-500/25 active:scale-95 text-sm"
+                  className="flex-1 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-xl font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed shadow-sm text-sm"
                 >
                   {isSubmitting ? 'Creating...' : 'Create Session'}
                 </button>

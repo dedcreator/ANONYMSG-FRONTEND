@@ -19,14 +19,14 @@ import {
 
 // Button Component with theme support
 const Button = ({ children, variant = 'primary', size = 'md', className = '', onClick, href, fullWidth, darkMode = false, ...props }: any) => {
-  const baseStyles = "font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2 rounded-xl"
+  const baseStyles = "font-semibold transition-colors duration-150 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2 rounded-xl"
   
   const variants: any = {
-    primary: "bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg shadow-blue-500/25",
+    primary: "bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white shadow-sm",
     secondary: darkMode 
-      ? "bg-slate-900 hover:bg-slate-800 text-white border border-slate-800 backdrop-blur-sm"
+      ? "bg-slate-900 hover:bg-slate-800 text-white border border-slate-800"
       : "bg-slate-100 hover:bg-slate-200 text-slate-900 border border-slate-200",
-    outline: "border-2 border-blue-500 text-blue-500 hover:bg-blue-500/10",
+    outline: "border border-blue-500 text-blue-500 hover:bg-blue-500/10",
   }
   
   const sizes: any = {
@@ -51,17 +51,17 @@ const Button = ({ children, variant = 'primary', size = 'md', className = '', on
 
 // Footer Component with theme support
 const Footer = ({ darkMode }: { darkMode: boolean }) => (
-  <footer className={`border-t py-16 px-4 transition-colors duration-300 ${darkMode ? 'border-slate-850 bg-[#0B0F19]' : 'border-slate-200/80 bg-white/50 backdrop-blur-sm'}`}>
+  <footer className={`border-t py-16 px-4 transition-colors duration-300 ${darkMode ? 'border-slate-800 bg-[#0B0F19]' : 'border-slate-200 bg-white'}`}>
     <div className="max-w-7xl mx-auto">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
         <div className="col-span-2 md:col-span-1">
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/25">
+            <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center shadow-sm">
               <Sparkles size={18} className="text-white" />
             </div>
             <span className={`font-bold text-xl ${darkMode ? 'text-white' : 'text-slate-900'}`}>Anon<span className="text-blue-500">Q</span></span>
           </div>
-          <p className={`text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>Speak freely. Stay anonymous.</p>
+          <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Speak freely. Stay anonymous.</p>
         </div>
         <div>
           <h4 className={`font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Product</h4>
@@ -222,24 +222,17 @@ export default function HomePage() {
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${themeClasses.bg} selection:bg-blue-500 selection:text-white relative overflow-x-hidden`}>
-      {/* Dynamic Ambient Background Glows */}
-      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div className={`absolute -top-40 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] rounded-full blur-3xl opacity-30 ${darkMode ? 'bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-500' : 'bg-gradient-to-tr from-blue-400 via-indigo-300 to-cyan-300 opacity-20'}`} />
-        <div className={`absolute top-1/3 -right-40 w-[600px] h-[600px] rounded-full blur-3xl opacity-20 ${darkMode ? 'bg-blue-600' : 'bg-blue-400'}`} />
-        <div className={`absolute bottom-20 -left-40 w-[600px] h-[600px] rounded-full blur-3xl opacity-20 ${darkMode ? 'bg-indigo-600' : 'bg-indigo-300'}`} />
-      </div>
-      
       {/* Hero Section */}
       <section ref={targetRef} className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <motion.div style={{ opacity }} className="text-center max-w-4xl mx-auto">
+        <motion.div style={{ opacity: opacity as any }} className="text-center max-w-4xl mx-auto">
           {/* Announcement Pill */}
           <motion.div 
             initial={{ opacity: 0, y: 15 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 bg-blue-500/10 border border-blue-500/20 text-blue-500 dark:text-blue-400 text-xs sm:text-sm font-semibold shadow-sm backdrop-blur-md"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-8 bg-blue-500/10 border border-blue-500/20 text-blue-500 text-xs sm:text-sm font-semibold shadow-sm"
           >
-            <Sparkles size={15} className="animate-spin text-blue-500" style={{ animationDuration: '6s' }} />
+            <Sparkles size={14} className="text-blue-500" />
             <span>AnonQ 2.0 is Live • Voice Notes, Tips & Live Q&A</span>
             <ChevronRight size={14} />
           </motion.div>
@@ -249,10 +242,10 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 20 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ duration: 0.6, delay: 0.1 }}
-            className={`text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] mb-6 ${themeClasses.text}`}
+            className={`text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-6 ${themeClasses.text}`}
           >
             The Most Honest Place on the Internet{' '}
-            <span className="bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 bg-clip-text text-transparent">
+            <span className="text-blue-500">
               Without the Noise.
             </span>
           </motion.h1>
@@ -274,7 +267,7 @@ export default function HomePage() {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
           >
             <Link href="/register" className="w-full sm:w-auto">
-              <Button darkMode={darkMode} size="lg" className="w-full sm:w-auto text-base font-bold shadow-xl shadow-blue-500/25">
+              <Button darkMode={darkMode} size="lg" className="w-full sm:w-auto text-base font-semibold shadow-sm">
                 Claim Your Free Link <MoveRight size={18} />
               </Button>
             </Link>
@@ -286,28 +279,25 @@ export default function HomePage() {
           </motion.div>
         </motion.div>
 
-        {/* VISUAL GRAPHIC: Interactive 3D Live App Preview Dock */}
+        {/* VISUAL GRAPHIC: Interactive Live App Preview Dock */}
         <motion.div 
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           className="relative max-w-5xl mx-auto mt-6"
         >
-          {/* Glowing Aura Ring */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 rounded-3xl blur-2xl opacity-20 transform -rotate-1 scale-105 pointer-events-none" />
-
-          {/* Mockup Glass Frame */}
-          <div className={`relative rounded-3xl border ${themeClasses.card} shadow-2xl overflow-hidden p-4 sm:p-8 backdrop-blur-2xl`}>
+          {/* Mockup Frame */}
+          <div className={`relative rounded-2xl border ${themeClasses.card} shadow-sm overflow-hidden p-4 sm:p-8`}>
             {/* Top Mockup App Header */}
-            <div className="flex items-center justify-between pb-6 border-b border-slate-200/50 dark:border-slate-800/80 mb-6 flex-wrap gap-3">
+            <div className="flex items-center justify-between pb-6 border-b border-slate-200 dark:border-slate-800 mb-6 flex-wrap gap-3">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-extrabold text-lg shadow-md shadow-blue-500/30">
+                <div className="w-11 h-11 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-sm">
                   A
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="font-extrabold text-base tracking-tight text-slate-900 dark:text-white">@alex_creator</span>
-                    <span className="px-2 py-0.5 rounded-full text-[11px] font-bold bg-blue-500/10 text-blue-500 border border-blue-500/20 inline-flex items-center gap-1">
+                    <span className="font-bold text-base tracking-tight text-slate-900 dark:text-white">@alex_creator</span>
+                    <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-blue-500/10 text-blue-500 border border-blue-500/20 inline-flex items-center gap-1">
                       <Check size={11} className="stroke-[3]" /> Verified
                     </span>
                   </div>
@@ -316,7 +306,7 @@ export default function HomePage() {
               </div>
 
               {/* Mode Selector Tabs */}
-              <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs font-semibold">
+              <div className="flex items-center gap-1.5 p-1 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs font-medium">
                 {[
                   { id: 'messages', label: 'Text Message', icon: MessageSquare },
                   { id: 'voice', label: 'Voice Note', icon: Mic },
@@ -326,9 +316,9 @@ export default function HomePage() {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id as any)}
-                    className={`px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 ${
+                    className={`px-3 py-1.5 rounded-lg transition flex items-center gap-1.5 ${
                       activeTab === tab.id
-                        ? 'bg-blue-600 text-white shadow-md shadow-blue-500/25'
+                        ? 'bg-blue-600 text-white shadow-sm'
                         : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                     }`}
                   >
@@ -367,7 +357,7 @@ export default function HomePage() {
                         </div>
                         <button
                           type="submit"
-                          className="px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl text-xs font-bold shadow-md shadow-blue-500/25 hover:from-blue-700 hover:to-indigo-700 transition active:scale-95 flex items-center gap-1.5"
+                          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-semibold shadow-sm transition active:scale-95 flex items-center gap-1.5"
                         >
                           <Send size={13} />
                           <span>{demoSent ? 'Sent Anonymously!' : 'Send Secretly'}</span>
@@ -393,7 +383,7 @@ export default function HomePage() {
                       <button
                         type="button"
                         onClick={() => setIsPlayingAudio(!isPlayingAudio)}
-                        className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 text-white flex items-center justify-center shadow-md shadow-cyan-500/25 active:scale-95"
+                        className="w-10 h-10 rounded-xl bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-sm active:scale-95"
                       >
                         {isPlayingAudio ? <Check size={16} /> : <Play size={16} className="fill-white" />}
                       </button>
@@ -449,7 +439,7 @@ export default function HomePage() {
                           key={amt}
                           className={`p-2.5 rounded-xl text-xs font-extrabold text-center border transition ${
                             idx === 2
-                              ? 'bg-gradient-to-tr from-amber-500 to-orange-500 text-white border-amber-400 shadow-md shadow-amber-500/25'
+                              ? 'bg-amber-500 text-white border-amber-600 shadow-sm'
                               : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300'
                           }`}
                         >
@@ -463,7 +453,7 @@ export default function HomePage() {
 
               {/* Right Column: Live Feed Visual Graphic */}
               <div className="md:col-span-5 space-y-3">
-                <div className="p-4 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-blue-700 text-white shadow-xl shadow-blue-500/20">
+                <div className="p-4 rounded-2xl bg-blue-600 text-white shadow-sm">
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
                       <MessageSquare size={16} className="text-blue-200" />
@@ -572,11 +562,11 @@ export default function HomePage() {
               </div>
 
               <div>
-                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-tr ${item.color} flex items-center justify-center text-white shadow-lg shadow-blue-500/25 mb-6`}>
-                  <item.icon size={24} />
+                <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-sm mb-6">
+                  <item.icon size={22} />
                 </div>
                 <span className="text-xs font-bold text-blue-500 uppercase tracking-wider">{item.pill}</span>
-                <h3 className={`text-xl font-black tracking-tight ${themeClasses.text} mt-1 mb-3`}>{item.title}</h3>
+                <h3 className={`text-xl font-bold tracking-tight ${themeClasses.text} mt-1 mb-3`}>{item.title}</h3>
                 <p className={`text-sm ${themeClasses.textSec} leading-relaxed`}>{item.desc}</p>
               </div>
             </motion.div>
@@ -591,7 +581,7 @@ export default function HomePage() {
             <span className="text-xs font-bold text-blue-500 uppercase tracking-widest px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20">
               Feature Arsenal
             </span>
-            <h2 className={`text-3xl sm:text-5xl font-black tracking-tight ${themeClasses.text} mb-4 mt-3`}>
+            <h2 className={`text-3xl sm:text-5xl font-bold tracking-tight ${themeClasses.text} mb-4 mt-3`}>
               Engineered for Genuine, Safe Interaction
             </h2>
             <p className={`text-base sm:text-lg ${themeClasses.textSec}`}>
@@ -606,13 +596,13 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 20 }} 
                 whileInView={{ opacity: 1, y: 0 }} 
                 transition={{ delay: i * 0.05 }} 
-                className={`${themeClasses.card} rounded-3xl p-7 transition ${themeClasses.cardHover}`}
+                className={`${themeClasses.card} rounded-2xl p-7 transition ${themeClasses.cardHover}`}
               >
                 <div className="flex items-center justify-between mb-4">
-                  <div className={`w-12 h-12 rounded-2xl ${feature.bg} flex items-center justify-center`}>
-                    <feature.icon className={`w-6 h-6 ${feature.color}`} />
+                  <div className={`w-11 h-11 rounded-xl ${feature.bg} flex items-center justify-center`}>
+                    <feature.icon className={`w-5 h-5 ${feature.color}`} />
                   </div>
-                  <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full ${feature.bg} ${feature.color}`}>
+                  <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-full ${feature.bg} ${feature.color}`}>
                     {feature.badge}
                   </span>
                 </div>
@@ -630,11 +620,11 @@ export default function HomePage() {
           <span className="text-xs font-bold text-emerald-500 uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
             Creator Stories
           </span>
-          <h2 className={`text-3xl sm:text-5xl font-black tracking-tight ${themeClasses.text} mb-4 mt-3`}>
+          <h2 className={`text-3xl sm:text-5xl font-bold tracking-tight ${themeClasses.text} mb-4 mt-3`}>
             Loved by 500,000+ Creators
           </h2>
           <p className={`text-base sm:text-lg ${themeClasses.textSec}`}>
-            See how creators across Africa and worldwide connect with their audiences.
+            See how creators connect with their audiences authentically.
           </p>
         </div>
 
@@ -642,18 +632,18 @@ export default function HomePage() {
           <AnimatePresence mode="wait">
             <motion.div 
               key={activeTestimonial} 
-              initial={{ opacity: 0, scale: 0.96 }} 
+              initial={{ opacity: 0, scale: 0.98 }} 
               animate={{ opacity: 1, scale: 1 }} 
-              exit={{ opacity: 0, scale: 0.96 }} 
-              className={`${themeClasses.card} rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden shadow-2xl`}
+              exit={{ opacity: 0, scale: 0.98 }} 
+              className={`${themeClasses.card} rounded-2xl p-8 sm:p-12 text-center relative overflow-hidden shadow-sm`}
             >
-              <Quote className="w-16 h-16 text-blue-500/15 absolute top-6 left-6 pointer-events-none" />
+              <Quote className="w-16 h-16 text-blue-500/10 absolute top-6 left-6 pointer-events-none" />
               <p className={`text-lg sm:text-2xl ${darkMode ? 'text-slate-200' : 'text-slate-800'} font-medium mb-8 leading-relaxed relative z-10`}>
                 "{testimonials[activeTestimonial].text}"
               </p>
 
               <div className="flex items-center justify-center gap-3.5">
-                <div className={`w-12 h-12 rounded-2xl bg-gradient-to-tr ${testimonials[activeTestimonial].avatarColor} flex items-center justify-center text-white font-extrabold text-lg shadow-md`}>
+                <div className="w-11 h-11 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-sm">
                   {testimonials[activeTestimonial].author.charAt(1).toUpperCase()}
                 </div>
                 <div className="text-left">
@@ -664,7 +654,7 @@ export default function HomePage() {
 
               <div className="flex justify-center gap-1 mt-5">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={16} className="fill-amber-400 text-amber-400" />
+                  <Star key={i} size={15} className="fill-amber-400 text-amber-400" />
                 ))}
               </div>
             </motion.div>
@@ -675,30 +665,27 @@ export default function HomePage() {
               <button 
                 key={i} 
                 onClick={() => setActiveTestimonial(i)} 
-                className={`h-2 rounded-full transition-all duration-300 ${activeTestimonial === i ? 'w-8 bg-gradient-to-r from-blue-600 to-indigo-600' : 'w-2 bg-slate-300 dark:bg-slate-700'}`} 
+                className={`h-2 rounded-full transition-all duration-300 ${activeTestimonial === i ? 'w-8 bg-blue-600' : 'w-2 bg-slate-300 dark:bg-slate-700'}`} 
               />
             ))}
           </div>
         </div>
       </section>
 
-      {/* High-Converting CTA Banner */}
+      {/* Modern Flat CTA Banner */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="relative rounded-3xl p-8 sm:p-14 text-center overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-900 text-white shadow-2xl shadow-blue-500/25 border border-blue-400/30"
+          transition={{ duration: 0.5 }}
+          className="relative rounded-2xl p-8 sm:p-14 text-center overflow-hidden bg-blue-600 text-white shadow-sm border border-blue-500"
         >
-          <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-400/20 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none" />
-
           <div className="relative z-10 max-w-2xl mx-auto">
-            <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 flex items-center justify-center mx-auto mb-6">
-              <Sparkles size={24} className="text-white" />
+            <div className="w-12 h-12 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center mx-auto mb-6">
+              <Sparkles size={22} className="text-white" />
             </div>
 
-            <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white mb-4">
+            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mb-4">
               Ready to Hear What People Really Think?
             </h2>
             <p className="text-blue-100 text-sm sm:text-base mb-8 leading-relaxed">
@@ -712,19 +699,19 @@ export default function HomePage() {
                   value={email} 
                   onChange={(e) => setEmail(e.target.value)} 
                   placeholder="Enter your email address" 
-                  className="flex-1 rounded-2xl px-5 py-3.5 bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder:text-blue-200 text-sm focus:outline-none focus:ring-2 focus:ring-white/40" 
+                  className="flex-1 rounded-xl px-5 py-3 bg-white/10 border border-white/20 text-white placeholder:text-blue-200 text-sm focus:outline-none focus:ring-2 focus:ring-white/40" 
                   required 
                 />
                 <button
                   type="submit"
-                  className="px-6 py-3.5 bg-white text-blue-900 font-bold rounded-2xl text-sm hover:bg-blue-50 transition active:scale-95 shadow-lg flex items-center justify-center gap-2"
+                  className="px-6 py-3 bg-white text-blue-600 font-bold rounded-xl text-sm hover:bg-slate-100 transition active:scale-95 shadow-sm flex items-center justify-center gap-2"
                 >
                   <span>Get Started</span>
                   <ArrowRight size={16} />
                 </button>
               </form>
             ) : (
-              <div className="p-4 rounded-2xl bg-white/20 backdrop-blur-md text-white font-bold flex items-center justify-center gap-2">
+              <div className="p-4 rounded-xl bg-white/20 text-white font-bold flex items-center justify-center gap-2">
                 <Check size={20} className="text-emerald-300" />
                 <span>Success! Welcome aboard AnonQ.</span>
               </div>

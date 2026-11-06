@@ -1,5 +1,6 @@
 // frontend/next.config.ts
 import type { NextConfig } from 'next'
+import path from 'path'
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -18,8 +19,10 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // Add turbopack config to silence the warning
-  turbopack: {},
+  // Set explicit turbopack root to prevent Next.js from detecting user home directory
+  turbopack: {
+    root: path.resolve(__dirname),
+  },
 }
 
 export default nextConfig

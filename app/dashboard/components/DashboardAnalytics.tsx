@@ -113,9 +113,9 @@ export function DashboardAnalytics({ stats, darkMode, messages }: DashboardAnaly
   return (
     <div className="space-y-6">
       {/* Welcome Section */}
-      <div className={`p-6 rounded-3xl ${darkMode ? 'bg-gradient-to-r from-blue-600/15 via-indigo-600/10 to-transparent border border-blue-500/25' : 'bg-gradient-to-r from-blue-50 via-indigo-50/50 to-white border border-blue-200/80 shadow-sm'}`}>
+      <div className={`p-6 rounded-2xl ${darkMode ? 'bg-slate-900/90 border border-slate-800' : 'bg-white border border-slate-200 shadow-sm'}`}>
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/25">
+          <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-sm">
             <Sparkles size={20} />
           </div>
           <div>

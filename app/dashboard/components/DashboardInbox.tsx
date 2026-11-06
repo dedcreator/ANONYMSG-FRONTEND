@@ -536,7 +536,7 @@ export function DashboardInbox({
               onClick={() => setFilter(f as any)}
               className={`px-4 py-2.5 rounded-xl transition-all text-sm font-semibold ${
                 filter === f 
-                  ? 'bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 text-white shadow-lg shadow-blue-500/25'
+                  ? 'bg-blue-600 text-white shadow-sm'
                   : darkMode 
                     ? 'bg-slate-900/80 text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800' 
                     : 'bg-white text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-slate-200 shadow-sm'
@@ -649,7 +649,7 @@ export function DashboardInbox({
             <button
               onClick={handleSendMessage}
               disabled={!messageInput.trim()}
-              className="px-4 py-2.5 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-500/25 active:scale-95"
+              className="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
             >
               <Send size={18} />
             </button>
@@ -726,7 +726,7 @@ export function DashboardInbox({
               </button>
             </div>
             <div className="flex gap-2">
-              <button onClick={archiveSelected} className="px-4 py-2 rounded-xl text-sm flex items-center gap-2 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white transition shadow-lg shadow-blue-500/25 font-semibold">
+              <button onClick={archiveSelected} className="px-4 py-2 rounded-xl text-sm flex items-center gap-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white transition shadow-sm font-semibold">
                 <Archive size={14} /> Archive ({selectedMessages.length})
               </button>
               <button onClick={() => { setSelectMode(false); setSelectedMessages([]) }} className={`px-4 py-2 rounded-xl text-sm ${darkMode ? 'bg-slate-800 hover:bg-slate-700 text-slate-300' : 'bg-slate-200 hover:bg-slate-300 text-slate-700'} transition font-medium`}>
@@ -743,17 +743,17 @@ export function DashboardInbox({
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className={`${darkMode ? 'bg-slate-900/30 border-slate-800/80' : 'bg-slate-50/50 border-slate-200'} rounded-2xl p-16 text-center border-2 border-dashed`}
+            className={`${darkMode ? 'bg-slate-900/30 border-slate-800/80' : 'bg-slate-50/50 border-slate-200'} rounded-2xl p-16 text-center border border-dashed`}
           >
-            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-r from-blue-500/10 to-indigo-500/10 flex items-center justify-center">
-              <Inbox className="w-8 h-8 text-blue-500/80" />
+            <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-blue-500/10 flex items-center justify-center">
+              <Inbox className="w-7 h-7 text-blue-500/80" />
             </div>
             <h3 className={`text-lg font-bold ${themeClasses.text} mb-2`}>Empty inbox</h3>
             <p className="text-slate-500 dark:text-slate-400 text-sm">
               {searchQuery ? 'Try a different search term' : 'Share your link to receive anonymous messages'}
             </p>
             {!searchQuery && (
-              <button onClick={onShareLink} className="mt-4 px-6 py-2.5 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl text-sm font-semibold transition-all duration-200 shadow-lg shadow-blue-500/25 active:scale-95">
+              <button onClick={onShareLink} className="mt-4 px-6 py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-xl text-sm font-semibold transition-all shadow-sm">
                 <Share2 size={14} className="inline mr-2" /> Share Your Link
               </button>
             )}
@@ -1088,7 +1088,7 @@ export function DashboardInbox({
               <div className="space-y-2">
                 <button 
                   onClick={downloadImage} 
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 rounded-xl text-white text-sm font-semibold transition shadow-lg shadow-blue-500/25 active:scale-95"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-xl text-white text-sm font-semibold transition shadow-sm"
                 >
                   <Download size={16} /> Download Image
                 </button>

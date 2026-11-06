@@ -50,10 +50,10 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform duration-200">
+            <div className="w-8 h-8 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-sm group-hover:bg-blue-700 transition-colors">
               <Sparkles size={16} className="text-white" />
             </div>
-            <span className={`text-xl font-black tracking-tight ${themeClasses.text}`}>
+            <span className={`text-xl font-bold tracking-tight ${themeClasses.text}`}>
               Anon<span className="text-blue-500">Q</span>
             </span>
           </Link>
@@ -84,7 +84,7 @@ export function Navbar() {
               <>
                 <Link
                   href="/dashboard"
-                  className="px-4 py-2 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl text-sm font-semibold transition flex items-center gap-2 shadow-lg shadow-blue-500/25 active:scale-95"
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-xl text-sm font-semibold transition flex items-center gap-2 shadow-sm"
                 >
                   <Inbox size={16} />
                   Dashboard
@@ -106,7 +106,7 @@ export function Navbar() {
                 </Link>
                 <Link
                   href="/register"
-                  className="px-4 py-2 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl text-sm font-semibold transition shadow-lg shadow-blue-500/25 active:scale-95"
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-xl text-sm font-semibold transition shadow-sm"
                 >
                   Get Started
                 </Link>
@@ -153,7 +153,7 @@ export function Navbar() {
                 <>
                   <Link
                     href="/dashboard"
-                    className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 text-white font-semibold shadow-lg shadow-blue-500/25"
+                    className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold shadow-sm"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <Inbox size={18} />
@@ -178,7 +178,7 @@ export function Navbar() {
                   </Link>
                   <Link
                     href="/register"
-                    className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 text-white font-semibold shadow-lg shadow-blue-500/25"
+                    className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold shadow-sm"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Get Started

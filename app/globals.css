@@ -121,57 +121,47 @@
     box-shadow: 0 20px 40px -12px var(--shadow-color);
   }
   
-  /* Gradient text */
+  /* Flat text accent */
   .gradient-text {
-    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
+    color: #2563eb;
   }
   
-  /* Gradient border */
+  /* Flat border accent */
   .gradient-border {
     position: relative;
-    background: var(--card-bg) padding-box;
-    border: 2px solid transparent;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: 1rem;
-    transition: all 0.3s;
+    transition: all 0.2s ease;
   }
   
-  .gradient-border::before {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
-    border-radius: 1rem;
-    z-index: -1;
-    opacity: 0.5;
-    transition: opacity 0.3s;
+  .gradient-border:hover {
+    border-color: #2563eb;
   }
   
-  .gradient-border:hover::before {
-    opacity: 1;
-  }
-  
-  /* Primary button */
+  /* Primary button - modern flat */
   .btn-primary {
-    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+    background-color: #2563EB;
     color: white;
     font-weight: 600;
     padding: 0.625rem 1.5rem;
     border-radius: 0.75rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: scale(1);
-    box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.3);
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
   }
   
   .btn-primary:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 25px 0 rgba(59, 130, 246, 0.4);
+    background-color: #1D4ED8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px 0 rgba(37, 99, 235, 0.25);
   }
   
   .btn-primary:active {
-    transform: scale(0.97);
+    transform: translateY(0);
   }
   
   .btn-primary:disabled {
@@ -258,7 +248,7 @@
   }
   
   .badge-primary {
-    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+    background-color: #2563EB;
     color: white;
     border: none;
   }

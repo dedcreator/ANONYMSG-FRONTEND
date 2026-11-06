@@ -532,13 +532,9 @@ export default function DashboardPage() {
 
   return (
     <div className={`min-h-screen ${themeClasses.bg} relative overflow-x-hidden transition-colors duration-300 selection:bg-blue-500 selection:text-white`}>
-      {/* Ambient Blue Background Glow */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 dark:bg-blue-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-indigo-600/5 dark:bg-indigo-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
-
       {/* Saved Toast Notification */}
       {showSavedAlert && (
-        <div className="fixed top-6 right-6 z-50 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-5 py-3 rounded-2xl shadow-xl shadow-blue-500/30 flex items-center gap-2.5 animate-in fade-in slide-in-from-top-4 duration-300 border border-blue-400/30">
+        <div className="fixed top-6 right-6 z-50 bg-blue-600 text-white px-5 py-3 rounded-xl shadow-lg flex items-center gap-2.5 animate-in fade-in slide-in-from-top-4 duration-300 border border-blue-500">
           <Check size={18} className="text-white" />
           <span className="font-semibold text-sm">Settings saved successfully!</span>
         </div>
@@ -546,11 +542,11 @@ export default function DashboardPage() {
 
       {/* PWA Install Banner */}
       {showInstallPrompt && !isPWA && (
-        <div className="fixed top-0 left-0 right-0 z-50 p-3 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white shadow-xl">
+        <div className="fixed top-0 left-0 right-0 z-50 p-3 bg-blue-600 text-white shadow-md">
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 px-4">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                <span className="text-lg">📱</span>
+              <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+                <span className="text-base">📱</span>
               </div>
               <div>
                 <h3 className="text-white font-bold text-sm">Install AnonQ App</h3>
@@ -567,7 +563,7 @@ export default function DashboardPage() {
               <button
                 onClick={installApp}
                 disabled={isInstalling}
-                className="px-4 py-1.5 bg-white text-blue-600 hover:bg-blue-50 rounded-xl text-xs font-bold transition shadow-md disabled:opacity-50"
+                className="px-4 py-1.5 bg-white text-blue-600 hover:bg-slate-100 rounded-lg text-xs font-bold transition shadow-sm disabled:opacity-50"
               >
                 {isInstalling ? 'Installing...' : 'Install'}
               </button>
@@ -604,7 +600,7 @@ export default function DashboardPage() {
               {/* Mobile brand header snippet */}
               <div className="flex lg:hidden items-center justify-between mb-3 pb-2 border-b border-slate-200/50 dark:border-slate-800/50">
                 <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/25">
+                  <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center text-white shadow-sm">
                     <Sparkles size={14} />
                   </div>
                   <span className="font-extrabold text-base tracking-tight">
@@ -633,8 +629,8 @@ export default function DashboardPage() {
               </div>
 
               <div className="flex items-center gap-2.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-sm shadow-blue-500/50 animate-pulse" />
-                <h1 className={`text-2xl sm:text-3xl font-extrabold tracking-tight ${themeClasses.text}`}>
+                <span className="w-2.5 h-2.5 rounded-full bg-blue-500" />
+                <h1 className={`text-2xl sm:text-3xl font-bold tracking-tight ${themeClasses.text}`}>
                   {getTabTitle()}
                 </h1>
               </div>
@@ -648,7 +644,7 @@ export default function DashboardPage() {
               {activeTab === 'inbox' && (
                 <button 
                   onClick={shareLink} 
-                  className="px-4 py-2.5 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-2 shadow-lg shadow-blue-500/25 active:scale-95"
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 shadow-sm"
                 >
                   <Share2 size={15} />
                   <span>Share Profile Link</span>
@@ -657,7 +653,7 @@ export default function DashboardPage() {
 
               {activeTab === 'qa' && (
                 <Link href="/dashboard/qa">
-                  <button className="px-4 py-2.5 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-2 shadow-lg shadow-blue-500/25 active:scale-95">
+                  <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 shadow-sm">
                     <Plus size={15} />
                     <span>New Q&A Session</span>
                   </button>

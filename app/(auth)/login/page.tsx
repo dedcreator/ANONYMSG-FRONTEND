@@ -108,41 +108,36 @@ export default function LoginPage() {
   }
 
   const themeClasses = {
-    bg: darkMode ? 'bg-black' : 'bg-white',
-    card: darkMode ? 'bg-gray-900/50 border border-gray-800' : 'bg-white border border-gray-200 shadow-sm',
-    input: darkMode ? 'bg-gray-800 border-gray-700 text-white' : 'bg-white border-gray-200 text-gray-900',
-    text: darkMode ? 'text-white' : 'text-gray-900',
-    textSecondary: darkMode ? 'text-gray-400' : 'text-gray-500',
+    bg: darkMode ? 'bg-[#0B0F19]' : 'bg-slate-50',
+    card: darkMode ? 'bg-slate-900/90 border border-slate-800' : 'bg-white border border-slate-200 shadow-sm',
+    input: darkMode ? 'bg-slate-950 border border-slate-800 text-white placeholder:text-slate-500' : 'bg-white border border-slate-200 text-slate-900 placeholder:text-slate-400',
+    text: darkMode ? 'text-white' : 'text-slate-900',
+    textSecondary: darkMode ? 'text-slate-400' : 'text-slate-600',
   }
 
   return (
     <div className={`min-h-screen flex items-center justify-center px-4 py-20 ${themeClasses.bg}`}>
-      <div className="fixed inset-0 -z-10 overflow-hidden">
-        <div className={`absolute -top-40 -right-40 w-80 h-80 rounded-full blur-3xl animate-pulse ${darkMode ? 'bg-blue-600/20' : 'bg-blue-400/20'}`} />
-        <div className={`absolute -bottom-40 -left-40 w-80 h-80 rounded-full blur-3xl animate-pulse-slow ${darkMode ? 'bg-blue-500/20' : 'bg-blue-300/20'}`} />
-      </div>
-
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md"
       >
         <div className={`${themeClasses.card} rounded-2xl p-6 sm:p-8`}>
           <div className="text-center mb-6 sm:mb-8">
-            <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-              <Mail className="text-white" size={32} />
+            <div className="w-14 h-14 bg-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4 text-white">
+              <Mail className="text-white" size={28} />
             </div>
-            <h1 className={`text-2xl sm:text-3xl font-bold ${darkMode ? 'gradient-text' : 'text-gray-900'}`}>Welcome Back</h1>
+            <h1 className={`text-2xl sm:text-3xl font-bold tracking-tight ${themeClasses.text}`}>Welcome Back</h1>
             <p className={`${themeClasses.textSecondary} mt-2 text-sm`}>Sign in to your anonymous account</p>
           </div>
 
           {/* Verification Needed Message */}
           {needsVerification && (
-            <div className="mb-4 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-xl">
+            <div className="mb-4 p-4 bg-amber-500/10 border border-amber-500/30 rounded-xl">
               <div className="flex items-start gap-3">
-                <AlertCircle size={20} className="text-yellow-500 flex-shrink-0 mt-0.5" />
+                <AlertCircle size={20} className="text-amber-500 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-yellow-500 text-sm font-medium mb-2">
+                  <p className="text-amber-500 text-sm font-medium mb-2">
                     Please verify your email address first
                   </p>
                   <button
@@ -160,7 +155,7 @@ export default function LoginPage() {
                     )}
                   </button>
                   {resendSuccess && (
-                    <p className="text-green-500 text-xs mt-2">
+                    <p className="text-emerald-500 text-xs mt-2">
                       ✓ Verification email sent! Please check your inbox.
                     </p>
                   )}
@@ -170,7 +165,7 @@ export default function LoginPage() {
           )}
 
           {error && !needsVerification && (
-            <div className="mb-4 p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-500 text-sm text-center">
+            <div className="mb-4 p-3 bg-rose-500/10 border border-rose-500/30 rounded-xl text-rose-500 text-sm text-center">
               {error}
             </div>
           )}
@@ -178,16 +173,16 @@ export default function LoginPage() {
           <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
             <div>
               <label className={`block text-xs sm:text-sm font-medium ${themeClasses.textSecondary} mb-1 sm:mb-2`}>
-                Email Address
+                Email or Username
               </label>
               <div className="relative">
-                <Mail size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+                <Mail size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
                 <input
-                  type="email"
+                  type="text"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className={`w-full ${themeClasses.input} rounded-xl pl-10 pr-4 py-2.5 placeholder:text-gray-500 focus:outline-none focus:border-blue-500 transition`}
-                  placeholder="you@example.com"
+                  className={`w-full ${themeClasses.input} rounded-xl pl-10 pr-4 py-2.5 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition`}
+                  placeholder="you@example.com or username"
                   required
                   disabled={needsVerification}
                 />
@@ -199,12 +194,12 @@ export default function LoginPage() {
                 Password
               </label>
               <div className="relative">
-                <Lock size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+                <Lock size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  className={`w-full ${themeClasses.input} rounded-xl pl-10 pr-10 py-2.5 placeholder:text-gray-500 focus:outline-none focus:border-blue-500 transition`}
+                  className={`w-full ${themeClasses.input} rounded-xl pl-10 pr-10 py-2.5 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition`}
                   placeholder="••••••••"
                   required
                   disabled={needsVerification}
@@ -212,7 +207,7 @@ export default function LoginPage() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white transition"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition"
                 >
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
@@ -220,17 +215,17 @@ export default function LoginPage() {
             </div>
 
             <div className="flex items-center justify-between text-sm">
-              <label className="flex items-center gap-2 text-gray-400 cursor-pointer">
+              <label className="flex items-center gap-2 text-slate-400 cursor-pointer">
                 <input 
                   type="checkbox" 
                   checked={formData.rememberMe}
                   onChange={(e) => setFormData({ ...formData, rememberMe: e.target.checked })}
-                  className="rounded border-white/20 bg-white/5" 
+                  className="rounded border-slate-700 bg-slate-800 text-blue-600 focus:ring-blue-500" 
                   disabled={needsVerification}
                 />
                 <span>Remember me</span>
               </label>
-              <Link href="/forgot-password" className="text-blue-500 hover:text-blue-400 transition">
+              <Link href="/forgot-password" className="text-blue-500 hover:text-blue-400 font-medium transition">
                 Forgot password?
               </Link>
             </div>
@@ -239,7 +234,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 rounded-xl text-white font-medium transition disabled:opacity-50"
+                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-xl text-white font-semibold transition shadow-sm disabled:opacity-50"
               >
                 {isLoading ? (
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -255,7 +250,7 @@ export default function LoginPage() {
             {needsVerification && (
               <div className="text-center">
                 <Link href="/login">
-                  <button className="text-blue-500 hover:text-blue-400 text-sm">
+                  <button className="text-blue-500 hover:text-blue-400 text-sm font-medium">
                     Back to login
                   </button>
                 </Link>

@@ -98,8 +98,8 @@ export function AudioWavePlayer({
     <div
       className={`flex items-center gap-3 p-3 rounded-2xl transition-all ${
         darkMode
-          ? 'bg-gradient-to-r from-blue-950/40 via-purple-950/30 to-blue-900/20 border border-blue-500/20 shadow-inner'
-          : 'bg-gradient-to-r from-blue-50 to-indigo-50/70 border border-blue-200/60 shadow-sm'
+          ? 'bg-slate-900 border border-slate-800'
+          : 'bg-slate-50 border border-slate-200'
       }`}
     >
       <audio
@@ -116,7 +116,7 @@ export function AudioWavePlayer({
       <button
         type="button"
         onClick={togglePlay}
-        className="w-10 h-10 shrink-0 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 hover:from-blue-500 hover:to-indigo-400 text-white flex items-center justify-center shadow-lg shadow-blue-500/30 hover:scale-105 active:scale-95 transition-all"
+        className="w-10 h-10 shrink-0 rounded-xl bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-sm active:scale-95 transition-all"
         title={isPlaying ? 'Pause' : 'Play voice note'}
       >
         {isPlaying ? <Pause size={18} /> : <Play size={18} className="ml-0.5" />}
@@ -137,7 +137,7 @@ export function AudioWavePlayer({
                 style={{ height: `${height}%` }}
                 className={`w-full max-w-[4px] rounded-full transition-all duration-150 ${
                   isPassed
-                    ? 'bg-gradient-to-t from-blue-500 to-indigo-400 shadow-sm shadow-blue-500/50'
+                    ? 'bg-blue-600'
                     : darkMode
                     ? 'bg-white/20 group-hover:bg-white/40'
                     : 'bg-gray-300 group-hover:bg-gray-400'

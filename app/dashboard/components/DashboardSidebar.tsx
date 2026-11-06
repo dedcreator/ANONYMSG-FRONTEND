@@ -47,11 +47,11 @@ export function DashboardSidebar({
         {/* Brand Logo */}
         <div className="flex items-center justify-between mb-6 pb-5 border-b border-slate-200/60 dark:border-slate-800/60">
           <Link href="/dashboard" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 via-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-105 transition-transform duration-300">
-              <Sparkles className="text-white" size={20} />
+            <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-sm transition-colors">
+              <Sparkles className="text-white" size={18} />
             </div>
             <div>
-              <p className="font-extrabold text-xl tracking-tight leading-none text-slate-900 dark:text-white">
+              <p className="font-bold text-xl tracking-tight leading-none text-slate-900 dark:text-white">
                 Anon<span className="text-blue-500">Q</span>
               </p>
               <p className="text-[11px] font-medium text-slate-500 dark:text-slate-400 mt-0.5">Creator Hub</p>
@@ -73,7 +73,7 @@ export function DashboardSidebar({
                 className="w-10 h-10 rounded-xl object-cover border-2 border-blue-500/30 shadow-sm"
               />
             ) : (
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center shadow-sm">
+              <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-sm">
                 <span className="text-white font-bold text-sm">{firstChar}</span>
               </div>
             )}
@@ -105,9 +105,9 @@ export function DashboardSidebar({
               <button
                 key={item.tab}
                 onClick={() => setActiveTab(item.tab)}
-                className={`w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 group relative ${
+                className={`w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-colors duration-150 group relative ${
                   isActive
-                    ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-500/25'
+                    ? 'bg-blue-600 text-white shadow-sm font-semibold'
                     : darkMode
                     ? 'text-slate-400 hover:text-white hover:bg-slate-900/60'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'

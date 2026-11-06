@@ -51,7 +51,7 @@ export function DashboardBottomNav({
               {isActive && (
                 <motion.div
                   layoutId="bottomNavPill"
-                  className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 shadow-md shadow-blue-500/30"
+                  className="absolute inset-0 rounded-xl bg-blue-600 shadow-sm"
                   transition={{ type: 'spring', stiffness: 450, damping: 35 }}
                 />
               )}

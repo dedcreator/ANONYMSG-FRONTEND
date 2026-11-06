@@ -154,7 +154,7 @@ export function DashboardCustomization({ darkMode, onSave }: DashboardCustomizat
       {/* Apply Button */}
       <button
         onClick={handleSave}
-        className="w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-xl text-sm font-medium transition shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2"
+        className="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-xl text-sm font-semibold transition shadow-sm flex items-center justify-center gap-2"
       >
         {saved ? (
           <>

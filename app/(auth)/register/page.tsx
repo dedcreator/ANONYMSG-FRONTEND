@@ -115,43 +115,38 @@ export default function RegisterPage() {
   }
 
   const themeClasses = {
-    bg: darkMode ? 'bg-black' : 'bg-white',
-    card: darkMode ? 'bg-gray-900/50 border border-gray-800' : 'bg-white border border-gray-200 shadow-sm',
-    input: darkMode ? 'bg-gray-800 border-gray-700 text-white' : 'bg-white border-gray-200 text-gray-900',
-    text: darkMode ? 'text-white' : 'text-gray-900',
-    textSecondary: darkMode ? 'text-gray-400' : 'text-gray-500',
+    bg: darkMode ? 'bg-[#0B0F19]' : 'bg-slate-50',
+    card: darkMode ? 'bg-slate-900/90 border border-slate-800' : 'bg-white border border-slate-200 shadow-sm',
+    input: darkMode ? 'bg-slate-950 border border-slate-800 text-white placeholder:text-slate-500' : 'bg-white border border-slate-200 text-slate-900 placeholder:text-slate-400',
+    text: darkMode ? 'text-white' : 'text-slate-900',
+    textSecondary: darkMode ? 'text-slate-400' : 'text-slate-600',
   }
 
   return (
     <div className={`min-h-screen flex items-center justify-center px-4 py-20 ${themeClasses.bg}`}>
-      <div className="fixed inset-0 -z-10 overflow-hidden">
-        <div className={`absolute -top-40 -right-40 w-80 h-80 rounded-full blur-3xl animate-pulse ${darkMode ? 'bg-blue-600/20' : 'bg-blue-400/20'}`} />
-        <div className={`absolute -bottom-40 -left-40 w-80 h-80 rounded-full blur-3xl animate-pulse-slow ${darkMode ? 'bg-blue-500/20' : 'bg-blue-300/20'}`} />
-      </div>
-
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md"
       >
         <div className={`${themeClasses.card} rounded-2xl p-6 sm:p-8`}>
           <div className="text-center mb-6 sm:mb-8">
-            <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-              <User className="text-white" size={32} />
+            <div className="w-14 h-14 bg-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4 text-white">
+              <User className="text-white" size={28} />
             </div>
-            <h1 className={`text-2xl sm:text-3xl font-bold ${darkMode ? 'gradient-text' : 'text-gray-900'}`}>Create Account</h1>
+            <h1 className={`text-2xl sm:text-3xl font-bold tracking-tight ${themeClasses.text}`}>Create Account</h1>
             <p className={`${themeClasses.textSecondary} mt-2 text-sm`}>Start receiving anonymous messages</p>
           </div>
 
           {success && (
-            <div className="mb-4 p-3 bg-green-500/10 border border-green-500/30 rounded-xl text-green-500 text-sm text-center flex items-center justify-center gap-2">
+            <div className="mb-4 p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-emerald-500 text-sm text-center flex items-center justify-center gap-2">
               <Check size={16} />
               Account created! Please check your email to verify your account.
             </div>
           )}
 
           {errors.general && (
-            <div className="mb-4 p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-500 text-sm text-center">
+            <div className="mb-4 p-3 bg-rose-500/10 border border-rose-500/30 rounded-xl text-rose-500 text-sm text-center">
               {errors.general}
             </div>
           )}
@@ -163,13 +158,13 @@ export default function RegisterPage() {
                 Username
               </label>
               <div className="relative">
-                <User size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+                <User size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
                 <input
                   type="text"
                   value={formData.username}
                   onChange={(e) => setFormData({ ...formData, username: e.target.value.toLowerCase() })}
-                  className={`w-full ${themeClasses.input} rounded-xl pl-10 pr-4 py-2.5 placeholder:text-gray-500 focus:outline-none focus:border-blue-500 transition ${
-                    errors.username ? 'border-red-500' : ''
+                  className={`w-full ${themeClasses.input} rounded-xl pl-10 pr-4 py-2.5 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition ${
+                    errors.username ? 'border-rose-500' : ''
                   }`}
                   placeholder="coolusername"
                 />

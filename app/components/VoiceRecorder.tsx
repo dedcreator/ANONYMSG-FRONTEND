@@ -269,7 +269,7 @@ export function VoiceRecorder({ darkMode, onRecordComplete, onCancel, maxDuratio
           >
             <div 
               onClick={startRecording}
-              className="w-16 h-16 mx-auto mb-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center cursor-pointer hover:scale-110 transition shadow-lg shadow-blue-500/25"
+              className="w-16 h-16 mx-auto mb-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center cursor-pointer shadow-sm hover:scale-105 transition"
             >
               <Mic size={28} className="text-white" />
             </div>
@@ -298,7 +298,7 @@ export function VoiceRecorder({ darkMode, onRecordComplete, onCancel, maxDuratio
             
             <div className="w-full h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
               <div 
-                className="h-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300"
+                className="h-full bg-blue-600 transition-all duration-300"
                 style={{ width: `${(duration / maxDuration) * 100}%` }}
               />
             </div>
@@ -343,7 +343,7 @@ export function VoiceRecorder({ darkMode, onRecordComplete, onCancel, maxDuratio
             className="space-y-4"
           >
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center">
                 <Clock size={16} className="text-white" />
               </div>
               <div className="flex-1">
@@ -377,7 +377,7 @@ export function VoiceRecorder({ darkMode, onRecordComplete, onCancel, maxDuratio
               <button 
                 onClick={handleSend} 
                 disabled={isUploading}
-                className="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-xl font-medium transition flex items-center gap-2 shadow-lg shadow-blue-500/25 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105"
+                className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium transition flex items-center gap-2 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105"
               >
                 {isUploading ? (
                   <Loader2 size={16} className="animate-spin" />

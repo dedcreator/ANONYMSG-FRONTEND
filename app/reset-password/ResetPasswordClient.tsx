@@ -5,11 +5,13 @@ import { useSearchParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Lock, Eye, EyeOff, CheckCircle, AlertCircle, ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { useTheme } from '@/app/context/ThemeContext'
 import { API_BASE_URL } from '@/lib/api'
 
 export default function ResetPasswordClient() {
   const searchParams = useSearchParams()
   const router = useRouter()
+  const { darkMode } = useTheme()
   const [token, setToken] = useState('')
   const [email, setEmail] = useState('')
   const [newPassword, setNewPassword] = useState('')
@@ -20,6 +22,14 @@ export default function ResetPasswordClient() {
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState('')
   const [isValidating, setIsValidating] = useState(true)
+
+  const themeClasses = {
+    bg: darkMode ? 'bg-[#0B0F19]' : 'bg-slate-50',
+    card: darkMode ? 'bg-slate-900/90 border border-slate-800' : 'bg-white border border-slate-200 shadow-sm',
+    input: darkMode ? 'bg-slate-950 border border-slate-800 text-white placeholder:text-slate-500' : 'bg-white border border-slate-200 text-slate-900 placeholder:text-slate-400',
+    text: darkMode ? 'text-white' : 'text-slate-900',
+    textSecondary: darkMode ? 'text-slate-400' : 'text-slate-600',
+  }
 
   useEffect(() => {
     const tokenParam = searchParams.get('token')
@@ -87,7 +97,7 @@ export default function ResetPasswordClient() {
 
   if (isValidating) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-black">
+      <div className={`min-h-screen flex items-center justify-center ${themeClasses.bg}`}>
         <div className="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
       </div>
     )
@@ -95,15 +105,15 @@ export default function ResetPasswordClient() {
 
   if (error && !token) {
     return (
-      <div className="min-h-screen flex items-center justify-center px-4 bg-black">
-        <div className="glass rounded-2xl p-8 text-center max-w-md">
-          <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-red-500/20 flex items-center justify-center">
-            <AlertCircle className="text-red-500" size={32} />
+      <div className={`min-h-screen flex items-center justify-center px-4 ${themeClasses.bg}`}>
+        <div className={`${themeClasses.card} rounded-2xl p-8 text-center max-w-md w-full`}>
+          <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center">
+            <AlertCircle className="text-rose-500" size={28} />
           </div>
-          <h2 className="text-xl font-semibold text-white mb-2">Invalid Reset Link</h2>
-          <p className="text-gray-400 text-sm mb-6">{error}</p>
+          <h2 className={`text-xl font-bold mb-2 ${themeClasses.text}`}>Invalid Reset Link</h2>
+          <p className={`${themeClasses.textSecondary} text-sm mb-6`}>{error}</p>
           <Link href="/forgot-password">
-            <button className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 rounded-xl text-white transition">
+            <button className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-xl text-white font-medium transition shadow-sm">
               Request New Link
             </button>
           </Link>
@@ -113,47 +123,42 @@ export default function ResetPasswordClient() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-20 bg-black">
-      <div className="fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl animate-pulse-slow" />
-      </div>
-
+    <div className={`min-h-screen flex items-center justify-center px-4 py-20 ${themeClasses.bg}`}>
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md"
       >
-        <div className="glass rounded-2xl p-6 sm:p-8">
+        <div className={`${themeClasses.card} rounded-2xl p-6 sm:p-8`}>
           <div className="text-center mb-6 sm:mb-8">
-            <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-              <Lock className="text-white" size={32} />
+            <div className="w-14 h-14 bg-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4 text-white">
+              <Lock className="text-white" size={28} />
             </div>
-            <h1 className="text-2xl sm:text-3xl font-bold gradient-text">Reset Password</h1>
-            <p className="text-gray-400 mt-2 text-sm">
+            <h1 className={`text-2xl sm:text-3xl font-bold tracking-tight ${themeClasses.text}`}>Reset Password</h1>
+            <p className={`${themeClasses.textSecondary} mt-2 text-sm`}>
               Create a new password for your account
             </p>
           </div>
 
           {isSuccess ? (
             <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-green-500/20 flex items-center justify-center">
-                <CheckCircle className="text-green-500" size={32} />
+              <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+                <CheckCircle className="text-emerald-500" size={28} />
               </div>
-              <h2 className="text-xl font-semibold text-white mb-2">Password Reset Successfully!</h2>
-              <p className="text-gray-400 text-sm mb-6">
-                Your password has been updated. You can now login with your new password.
+              <h2 className={`text-xl font-bold mb-2 ${themeClasses.text}`}>Password Reset Successfully!</h2>
+              <p className={`${themeClasses.textSecondary} text-sm mb-6`}>
+                Your password has been updated. You will be redirected to login shortly.
               </p>
               <Link href="/login">
-                <button className="w-full px-4 py-2.5 bg-blue-600 hover:bg-blue-700 rounded-xl text-white transition">
+                <button className="w-full px-4 py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-xl text-white font-medium transition shadow-sm">
                   Go to Login
                 </button>
               </Link>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
               {error && (
-                <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-500 text-sm flex items-center gap-2">
+                <div className="p-3 bg-rose-500/10 border border-rose-500/30 rounded-xl text-rose-500 text-sm flex items-center gap-2">
                   <AlertCircle size={16} />
                   {error}
                 </div>
@@ -161,49 +166,49 @@ export default function ResetPasswordClient() {
 
               {/* New Password */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className={`block text-xs sm:text-sm font-medium ${themeClasses.textSecondary} mb-1 sm:mb-2`}>
                   New Password
                 </label>
                 <div className="relative">
-                  <Lock size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+                  <Lock size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
                   <input
                     type={showPassword ? 'text' : 'password'}
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl pl-10 pr-10 py-2.5 text-white placeholder:text-gray-500 focus:outline-none focus:border-blue-500 transition"
+                    className={`w-full ${themeClasses.input} rounded-xl pl-10 pr-10 py-2.5 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition`}
                     placeholder="Enter new password"
                     required
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white transition"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition"
                   >
                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
                 </div>
-                <p className="text-xs text-gray-500 mt-1">Must be at least 6 characters</p>
+                <p className="text-xs text-slate-500 mt-1">Must be at least 6 characters</p>
               </div>
 
               {/* Confirm Password */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className={`block text-xs sm:text-sm font-medium ${themeClasses.textSecondary} mb-1 sm:mb-2`}>
                   Confirm Password
                 </label>
                 <div className="relative">
-                  <Lock size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+                  <Lock size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
                   <input
                     type={showConfirmPassword ? 'text' : 'password'}
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl pl-10 pr-10 py-2.5 text-white placeholder:text-gray-500 focus:outline-none focus:border-blue-500 transition"
+                    className={`w-full ${themeClasses.input} rounded-xl pl-10 pr-10 py-2.5 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition`}
                     placeholder="Confirm new password"
                     required
                   />
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white transition"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition"
                   >
                     {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
@@ -213,7 +218,7 @@ export default function ResetPasswordClient() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 rounded-xl text-white font-medium transition flex items-center justify-center gap-2 disabled:opacity-50"
+                className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-xl text-white font-semibold transition flex items-center justify-center gap-2 shadow-sm disabled:opacity-50"
               >
                 {isLoading ? (
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -225,7 +230,7 @@ export default function ResetPasswordClient() {
                 )}
               </button>
 
-              <div className="text-center text-sm text-gray-400">
+              <div className={`text-center text-sm ${themeClasses.textSecondary}`}>
                 Remember your password?{' '}
                 <Link href="/login" className="text-blue-500 hover:text-blue-400 font-semibold transition">
                   Back to Login

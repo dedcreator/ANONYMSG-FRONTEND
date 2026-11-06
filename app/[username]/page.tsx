@@ -32,15 +32,15 @@ import { LeaderboardWidget } from '@/app/components/LeaderboardWidget'
 
 // Button Component with theme support
 const Button = ({ children, variant = 'primary', size = 'md', className = '', onClick, fullWidth, disabled, loading, type = 'button', darkMode = false }: any) => {
-  const baseStyles = "font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2 rounded-xl"
+  const baseStyles = "font-medium transition-colors duration-150 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2 rounded-xl"
   
   const variants: any = {
-    primary: "bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg shadow-blue-500/25",
+    primary: "bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white shadow-sm",
     secondary: darkMode
-      ? "bg-slate-900 hover:bg-slate-800 text-white border border-slate-800 backdrop-blur-sm"
+      ? "bg-slate-900 hover:bg-slate-800 text-white border border-slate-800"
       : "bg-slate-100 hover:bg-slate-200 text-slate-900 border border-slate-200",
-    outline: "border-2 border-blue-500 text-blue-500 hover:bg-blue-500/10",
-    danger: "bg-rose-500 hover:bg-rose-600 text-white shadow-lg shadow-rose-500/25",
+    outline: "border border-blue-500 text-blue-500 hover:bg-blue-500/10",
+    danger: "bg-rose-500 hover:bg-rose-600 text-white shadow-sm",
   }
   
   const sizes: any = {
@@ -349,7 +349,7 @@ export default function PublicProfilePage() {
     return (
       <div className={`min-h-screen flex items-center justify-center ${themeClasses.bg}`}>
         <div className="text-center max-w-md p-8">
-          <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-r from-blue-500/20 to-purple-500/20 flex items-center justify-center">
+          <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
             <User size={40} className="text-gray-500" />
           </div>
           <h1 className={`text-2xl font-bold ${themeClasses.text} mb-2`}>User not found</h1>
@@ -383,11 +383,10 @@ export default function PublicProfilePage() {
           <div 
             className="absolute inset-0"
             style={{ 
-              background: `linear-gradient(135deg, ${profile.team_color || '#3B82F6'}30, ${darkMode ? '#000000' : '#f0f0f0'})`
+              backgroundColor: profile.team_color || (darkMode ? '#0f172a' : '#f1f5f9')
             }}
           />
         )}
-        <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full blur-3xl ${darkMode ? 'bg-blue-500/20' : 'bg-blue-400/20'}`} />
       </div>
 
       {/* Profile Content */}
@@ -418,11 +417,11 @@ export default function PublicProfilePage() {
                   <span className="text-4xl font-bold text-white">{firstChar}</span>
                 </div>
               )}
-              <div className="absolute -top-1 -right-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full p-1.5 shadow-lg shadow-green-500/25">
+              <div className="absolute -top-1 -right-1 bg-emerald-500 rounded-full p-1.5 shadow-sm">
                 <Shield size={12} className="text-white" />
               </div>
               {isOwnProfile && (
-                <div className="absolute -bottom-2 -left-2 bg-blue-500 text-white text-[10px] px-2 py-0.5 rounded-full font-medium shadow-lg shadow-blue-500/25">
+                <div className="absolute -bottom-2 -left-2 bg-blue-500 text-white text-[10px] px-2 py-0.5 rounded-full font-medium shadow-sm">
                   You
                 </div>
               )}
@@ -451,7 +450,7 @@ export default function PublicProfilePage() {
                   <button
                     type="button"
                     onClick={() => setShowGiftModal(true)}
-                    className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-xs shadow-md shadow-blue-500/25 transition-all flex items-center gap-1.5 active:scale-95"
+                    className="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-xs shadow-sm transition-colors flex items-center gap-1.5"
                   >
                     <Gift size={14} />
                     <span>Send Tip</span>
@@ -744,7 +743,7 @@ export default function PublicProfilePage() {
             transition={{ delay: 0.2 }}
             className={`rounded-2xl border p-8 text-center ${themeClasses.card}`}
           >
-            <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 flex items-center justify-center">
+            <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
               <User size={36} className="text-blue-500" />
             </div>
             <h3 className={`text-xl font-semibold ${themeClasses.text} mb-2`}>This is your profile</h3>

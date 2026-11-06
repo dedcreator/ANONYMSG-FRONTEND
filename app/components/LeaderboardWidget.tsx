@@ -72,7 +72,7 @@ export function LeaderboardWidget({
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-400 to-yellow-600 flex items-center justify-center text-white shadow-lg shadow-amber-500/25">
+          <div className="w-10 h-10 rounded-2xl bg-amber-500 flex items-center justify-center text-white shadow-sm">
             <Trophy size={20} />
           </div>
           <div>
@@ -86,7 +86,7 @@ export function LeaderboardWidget({
         <button
           type="button"
           onClick={onOpenGiftModal}
-          className="px-3.5 py-1.5 rounded-xl font-bold text-xs text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-md shadow-blue-500/20 transition-all flex items-center gap-1.5 active:scale-95"
+          className="px-3.5 py-1.5 rounded-xl font-bold text-xs text-white bg-blue-600 hover:bg-blue-700 shadow-sm transition-all flex items-center gap-1.5 active:scale-95"
         >
           <Gift size={14} />
           <span>Send Tip</span>
@@ -106,7 +106,7 @@ export function LeaderboardWidget({
           <button
             type="button"
             onClick={onOpenGiftModal}
-            className="px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg shadow-blue-500/20 active:scale-95"
+            className="px-4 py-2 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-sm active:scale-95"
           >
             Send First Gift 🎁
           </button>
@@ -121,8 +121,8 @@ export function LeaderboardWidget({
                 className={`p-3.5 rounded-2xl flex items-center justify-between gap-3 border transition-all ${
                   index === 0
                     ? darkMode
-                      ? 'bg-gradient-to-r from-amber-500/10 via-yellow-500/5 to-transparent border-amber-500/30'
-                      : 'bg-gradient-to-r from-amber-50 via-yellow-50/50 to-transparent border-amber-200'
+                      ? 'bg-amber-950/20 border-amber-500/30'
+                      : 'bg-amber-50/70 border-amber-200'
                     : darkMode
                     ? 'bg-slate-950/40 border-slate-800/80 hover:border-slate-700'
                     : 'bg-slate-50 border-slate-100 hover:border-slate-200'

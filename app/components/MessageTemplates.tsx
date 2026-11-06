@@ -68,7 +68,7 @@ export function MessageTemplates({ darkMode, onSelect, onClose }: MessageTemplat
             onClick={() => setSelectedCategory(category)}
             className={`px-3 py-1 rounded-xl text-xs transition ${
               selectedCategory === category
-                ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white'
+                ? 'bg-blue-600 text-white font-semibold shadow-sm'
                 : themeClasses.button
             }`}
           >

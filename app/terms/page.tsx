@@ -15,9 +15,9 @@ const Button = ({ children, variant = 'primary', size = 'md', className = '', on
   const baseStyles = "font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95 inline-flex items-center justify-center gap-2 rounded-xl"
   
   const variants: any = {
-    primary: "bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-lg shadow-blue-500/25",
+    primary: "bg-blue-600 hover:bg-blue-700 text-white shadow-sm",
     secondary: darkMode 
-      ? "bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm"
+      ? "bg-slate-800 hover:bg-slate-700 text-white border border-slate-700"
       : "bg-gray-100 hover:bg-gray-200 text-gray-900 border border-gray-200",
   }
   
@@ -56,11 +56,11 @@ const Footer = ({ darkMode }: { darkMode: boolean }) => (
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
         <div className="col-span-2 md:col-span-1">
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center shadow-lg shadow-blue-500/25">
+            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center shadow-sm">
               <Sparkles size={18} className="text-white" />
             </div>
             <span className={`font-bold text-xl ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-              Anon<span className="text-blue-500">Q</span>
+              Anon<span className="text-blue-600">Q</span>
             </span>
           </div>
           <p className={`text-sm ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>
@@ -154,15 +154,14 @@ export default function TermsPage() {
 
       {/* Hero */}
       <section className="pt-32 pb-16 px-4 relative overflow-hidden">
-        <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full blur-3xl ${darkMode ? 'bg-blue-600/20' : 'bg-blue-400/10'}`} />
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 ${darkMode ? 'bg-white/5 border border-white/10' : 'bg-blue-50 border border-blue-100'}`}>
-              <FileText size={16} className="text-blue-500" />
+              <FileText size={16} className="text-blue-600" />
               <span className={`text-sm ${themeClasses.textSec}`}>Terms of Service</span>
             </div>
             <h1 className={`text-5xl md:text-6xl font-bold mb-6 ${themeClasses.text}`}>
-              Terms of <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Service</span>
+              Terms of <span className="text-blue-600">Service</span>
             </h1>
             <p className={`text-xl ${themeClasses.textSec} max-w-2xl mx-auto leading-relaxed`}>
               Please read these terms carefully before using AnonQ. By using our service, you agree to these terms.
@@ -234,7 +233,7 @@ export default function TermsPage() {
       {/* CTA */}
       <section className="py-20 px-4">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} className="max-w-4xl mx-auto text-center">
-          <div className={`rounded-3xl p-12 relative overflow-hidden ${darkMode ? 'bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-white/10' : 'bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-100/50'}`}>
+          <div className={`rounded-3xl p-12 relative overflow-hidden ${darkMode ? 'bg-slate-900/90 border border-slate-800' : 'bg-slate-50 border border-slate-200 shadow-sm'}`}>
             <h2 className={`text-3xl md:text-4xl font-bold ${themeClasses.text} mb-4`}>Questions About Our Terms?</h2>
             <p className={`${themeClasses.textSec} mb-8 max-w-2xl mx-auto`}>
               We're here to help. Contact us if you have any questions about our terms of service.

@@ -143,9 +143,9 @@ export function DashboardArchive({
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className={`${darkMode ? 'bg-gray-900/30 border-gray-800/50' : 'bg-gray-50/50 border-gray-200/60'} rounded-2xl p-16 text-center border-2 border-dashed`}
+            className={`${darkMode ? 'bg-slate-900/30 border-slate-800' : 'bg-slate-50 border-slate-200'} rounded-2xl p-16 text-center border border-dashed`}
           >
-            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-r from-green-500/10 to-emerald-500/10 flex items-center justify-center">
+            <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-emerald-500/10 flex items-center justify-center">
               <Archive className="w-8 h-8 text-gray-400" />
             </div>
             <h3 className={`text-lg font-medium ${themeClasses.text} mb-2`}>Archive is empty</h3>
